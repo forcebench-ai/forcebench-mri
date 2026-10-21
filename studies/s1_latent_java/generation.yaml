@@ -1,0 +1,35 @@
+# Study 1, phase B4b: Apex requests answered with and without the Apex-minus-Java direction.
+#
+# Each request is answered greedily (thinking off) four times: unsteered, with the direction added at
+# `layer` (scaled by `scale`) at every position, with it subtracted, and with a random direction of the
+# same length. phase_b.py counts the Java-isms in the code of each reply. Half are tests, where phase A
+# saw JUnit's assertions.
+
+layer: 50
+scale: 1.0
+
+prompts:
+  - id: test-account-rename
+    ask: Write an Apex test class for an AccountService.rename(Id accountId, String newName) method. Assert the new name. Reply with just the code.
+  - id: test-discount
+    ask: Write an Apex unit test for a DiscountCalculator.apply(Decimal amount) method that gives 10% off amounts over 1,000. Reply with just the code.
+  - id: test-lead-score
+    ask: Write an Apex test class for a LeadScorer.score(Lead l) method that returns an Integer from 0 to 100. Reply with just the code.
+  - id: test-email-validator
+    ask: Write an Apex test for an EmailValidator.isValid(String email) method, covering a valid address and one without an @ sign. Reply with just the code.
+  - id: test-case-router
+    ask: Write an Apex test class for a CaseRouter.route(List<Case> cases) method that assigns cases to queues by priority. Reply with just the code.
+  - id: test-slugify
+    ask: Write an Apex test class for a StringUtils.slugify(String s) method. Reply with just the code.
+  - id: blank-email-contacts
+    ask: Write an Apex class with a method that returns the names of all contacts whose email is blank, and logs how many it found. Reply with just the code.
+  - id: dedupe-emails
+    ask: Write an Apex utility method that removes duplicate email addresses from a list of strings, ignoring case. Reply with just the code.
+  - id: open-pipeline
+    ask: Write an Apex class that sums the Amount of an account's open opportunities and throws a custom exception when it has none. Reply with just the code.
+  - id: parse-order-json
+    ask: Write an Apex method that parses a JSON string of order lines into a list of a small wrapper class and totals their prices. Reply with just the code.
+  - id: format-name
+    ask: Write an Apex method that formats a contact's full name as "Last, First" and handles a missing first name. Reply with just the code.
+  - id: stage-handler
+    ask: Write an Apex trigger handler that sets an opportunity's Next_Step__c when its stage changes to Negotiation. Reply with just the code.
