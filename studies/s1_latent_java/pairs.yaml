@@ -1,0 +1,605 @@
+# Study 1, phase A: Apex/Java minimal pairs for the logit lens.
+#
+# Each pair is one coding request and one code prefix, shown twice: once as Apex ("Write an Apex
+# ...", a ```apex fence) and once as Java ("Write a Java ...", a ```java fence). Only the language
+# name and the fence differ. The prefix ends where the two languages' next tokens part ways.
+#
+# `apex` and `java` list continuations idiomatic in each language. Only the FIRST token of each is
+# compared; run.py checks with the model's tokenizer that the prefix ends on a token boundary, and
+# that the two sides' first tokens don't overlap, and drops the pair if not. Several continuations on
+# one side are alternatives (e.g. @IsTest and @isTest): that side's probability is their sum.
+#
+# `{a_lang}` becomes "an Apex" or "a Java"; `{lang}` becomes "Apex" or "Java".
+# Some Apex tokens are also legal Java (Integer, Boolean, ==, `public class`), so the Java context
+# can give them real probability; the comparison is between each language's idiom, not legality.
+
+pairs:
+  # ---------------------------------------------------------------- logging: System.debug / System.out
+  - id: log-inserted-accounts
+    kind: logging
+    ask: Write {a_lang} class with a static method that logs how many accounts were inserted.
+    prefix: |-
+      public class AccountLogger {
+          public static void logInserted(List<Account> accounts) {
+              System
+    apex: [".debug("]
+    java: [".out.println("]
+  - id: log-opportunity-amount
+    kind: logging
+    ask: Write {a_lang} method that prints an opportunity's name and amount for debugging.
+    prefix: |-
+      public class OpportunityDebug {
+          public static void show(Opportunity opp) {
+              System
+    apex: [".debug("]
+    java: [".out.println("]
+  - id: log-contact-email
+    kind: logging
+    ask: Write {a_lang} method that logs a warning when a contact has no email address.
+    prefix: |-
+      public class ContactChecks {
+          public static void warnIfNoEmail(Contact c) {
+              if (c.Email == null) {
+                  System
+    apex: [".debug("]
+    java: [".out.println(", ".err.println("]
+  - id: log-loop-count
+    kind: logging
+    ask: Write {a_lang} method that counts the open cases in a list and logs the count.
+    prefix: |-
+      public class CaseCounter {
+          public static void logOpenCount(List<Case> cases) {
+              for (Case c : cases) {
+                  check(c);
+              }
+              System
+    apex: [".debug("]
+    java: [".out.println("]
+  - id: log-start
+    kind: logging
+    ask: Write {a_lang} class whose run method logs "Starting nightly account sync" before it does anything else.
+    prefix: |-
+      public class NightlyAccountSync {
+          public void run() {
+              System
+    apex: [".debug("]
+    java: [".out.println("]
+  - id: log-error
+    kind: logging
+    ask: Write {a_lang} method that tries to update a lead's status and logs the error message if it fails.
+    prefix: |-
+      public class LeadUpdater {
+          public static void setStatus(Lead l, String status) {
+              try {
+                  l.Status = status;
+                  save(l);
+              } catch (Exception e) {
+                  System
+    apex: [".debug("]
+    java: [".out.println(", ".err.println("]
+  - id: log-map-size
+    kind: logging
+    ask: Write {a_lang} method that groups contacts by account and logs how many accounts it found.
+    prefix: |-
+      public class ContactGrouper {
+          public static void report(Map<String, List<Contact>> byAccount) {
+              System
+    apex: [".debug("]
+    java: [".out.println("]
+  - id: log-total
+    kind: logging
+    ask: Write {a_lang} method that adds up the amounts of a list of opportunities and logs the total.
+    prefix: |-
+      public class PipelineTotal {
+          public static void logTotal(List<Opportunity> opps) {
+              for (Opportunity o : opps) {
+                  add(o);
+              }
+              System
+    apex: [".debug("]
+    java: [".out.println("]
+
+  # ---------------------------------------------------------------- string literals: ' / "
+  - id: quote-stage-constant
+    kind: string-quotes
+    ask: Write {a_lang} class with a constant for the opportunity stage "Closed Won".
+    prefix: |-
+      public class OpportunityStages {
+          public static final String CLOSED_WON =
+    apex: [" 'Closed Won';"]
+    java: [" \"Closed Won\";"]
+  - id: quote-default-status
+    kind: string-quotes
+    ask: Write {a_lang} method that returns the default status for a new case, which is "New".
+    prefix: |-
+      public class CaseDefaults {
+          public static String defaultStatus() {
+              return
+    apex: [" 'New';"]
+    java: [" \"New\";"]
+  - id: quote-greeting
+    kind: string-quotes
+    ask: Write {a_lang} method that builds a greeting for a contact, like "Hello, Ada".
+    prefix: |-
+      public class Greeter {
+          public static String greet(Contact c) {
+              return
+    apex: [" 'Hello, ' + c.FirstName;"]
+    java: [" \"Hello, \" + c.FirstName;"]
+  - id: quote-industry-check
+    kind: string-quotes
+    ask: Write {a_lang} method that returns true when an account's industry is "Banking".
+    prefix: |-
+      public class IndustryRules {
+          public static final String BANKING =
+    apex: [" 'Banking';"]
+    java: [" \"Banking\";"]
+  - id: quote-error-message
+    kind: string-quotes
+    ask: Write {a_lang} class with a constant error message "Amount must be positive".
+    prefix: |-
+      public class Messages {
+          public static final String AMOUNT_NOT_POSITIVE =
+    apex: [" 'Amount must be positive';"]
+    java: [" \"Amount must be positive\";"]
+  - id: quote-map-key
+    kind: string-quotes
+    ask: Write {a_lang} method that returns the "title" entry of a map of labels.
+    prefix: |-
+      public class Labels {
+          public static String title(Map<String, String> labels) {
+              return labels.get
+    apex: ["('title');"]
+    java: ["(\"title\");"]
+  - id: quote-region-default
+    kind: string-quotes
+    ask: Write {a_lang} method that returns an account's region, or "Unassigned" when it has none.
+    prefix: |-
+      public class RegionLookup {
+          private static final String UNASSIGNED =
+    apex: [" 'Unassigned';"]
+    java: [" \"Unassigned\";"]
+  - id: quote-priority
+    kind: string-quotes
+    ask: Write {a_lang} method that sets a case's priority to "High".
+    prefix: |-
+      public class CasePriority {
+          public static void escalate(Case c) {
+              c.Priority =
+    apex: [" 'High';"]
+    java: [" \"High\";"]
+
+  # ---------------------------------------------------------------- collection constructors
+  - id: coll-list-emails
+    kind: collections
+    ask: Write {a_lang} method that collects the email addresses of a list of contacts.
+    prefix: |-
+      public class ContactEmails {
+          public static List<String> emails(List<Contact> contacts) {
+              List<String> result = new
+    apex: [" List<String>();"]
+    java: [" ArrayList<>();"]
+  - id: coll-list-names
+    kind: collections
+    ask: Write {a_lang} method that returns the names of a list of accounts.
+    prefix: |-
+      public class AccountNames {
+          public static List<String> names(List<Account> accounts) {
+              List<String> names = new
+    apex: [" List<String>();"]
+    java: [" ArrayList<>();"]
+  - id: coll-list-big-deals
+    kind: collections
+    ask: Write {a_lang} method that keeps only the opportunities worth more than 100,000.
+    prefix: |-
+      public class BigDeals {
+          public static List<Opportunity> filter(List<Opportunity> opps) {
+              List<Opportunity> big = new
+    apex: [" List<Opportunity>();"]
+    java: [" ArrayList<>();"]
+  - id: coll-map-by-name
+    kind: collections
+    ask: Write {a_lang} method that indexes a list of accounts by their name.
+    prefix: |-
+      public class AccountIndex {
+          public static Map<String, Account> byName(List<Account> accounts) {
+              Map<String, Account> result = new
+    apex: [" Map<String, Account>();"]
+    java: [" HashMap<>();"]
+  - id: coll-map-counts
+    kind: collections
+    ask: Write {a_lang} method that counts how many contacts have each last name.
+    prefix: |-
+      public class LastNameCounts {
+          public static Map<String, Integer> count(List<Contact> contacts) {
+              Map<String, Integer> counts = new
+    apex: [" Map<String, Integer>();"]
+    java: [" HashMap<>();"]
+  - id: coll-map-cases
+    kind: collections
+    ask: Write {a_lang} method that groups cases by their status.
+    prefix: |-
+      public class CaseGroups {
+          public static Map<String, List<Case>> byStatus(List<Case> cases) {
+              Map<String, List<Case>> groups = new
+    apex: [" Map<String, List<Case>>();"]
+    java: [" HashMap<>();"]
+  - id: coll-set-emails
+    kind: collections
+    ask: Write {a_lang} method that returns the distinct email domains of a list of contacts.
+    prefix: |-
+      public class EmailDomains {
+          public static Set<String> domains(List<Contact> contacts) {
+              Set<String> result = new
+    apex: [" Set<String>();"]
+    java: [" HashSet<>();"]
+  - id: coll-set-owners
+    kind: collections
+    ask: Write {a_lang} method that returns the distinct owner names of a list of opportunities.
+    prefix: |-
+      public class DealOwners {
+          public static Set<String> owners(List<Opportunity> opps) {
+              Set<String> owners = new
+    apex: [" Set<String>();"]
+    java: [" HashSet<>();"]
+  - id: coll-set-seen
+    kind: collections
+    ask: Write {a_lang} method that removes duplicate leads by email, keeping the first one seen.
+    prefix: |-
+      public class LeadDeduper {
+          public static List<Lead> dedupe(List<Lead> leads) {
+              Set<String> seen = new
+    apex: [" Set<String>();"]
+    java: [" HashSet<>();"]
+
+  # ---------------------------------------------------------------- primitive types
+  - id: prim-count-return
+    kind: primitives
+    ask: Write {a_lang} method that returns the number of open opportunities in a list as a whole number.
+    prefix: |-
+      public class OpportunityStats {
+          public static
+    apex: [" Integer countOpen("]
+    java: [" int countOpen("]
+  - id: prim-for-index
+    kind: primitives
+    ask: Write {a_lang} method that loops over a list of accounts by index and prints each position.
+    prefix: |-
+      public class AccountLoop {
+          public static void walk(List<Account> accounts) {
+              for (
+    apex: ["Integer i = 0;"]
+    java: ["int i = 0;"]
+  - id: prim-for-index-2
+    kind: primitives
+    ask: Write {a_lang} method that numbers the line items of a quote from 1 using a classic for loop.
+    prefix: |-
+      public class LineNumbers {
+          public static void number(List<QuoteLineItem> items) {
+              for (
+    apex: ["Integer i = 0;"]
+    java: ["int i = 0;"]
+  - id: prim-boolean-return
+    kind: primitives
+    ask: Write {a_lang} method that says whether a contact can be emailed.
+    prefix: |-
+      public class EmailRules {
+          public static
+    apex: [" Boolean canEmail("]
+    java: [" boolean canEmail("]
+  - id: prim-boolean-flag
+    kind: primitives
+    ask: Write {a_lang} class with a static flag that stops a trigger handler from running twice.
+    prefix: |-
+      public class TriggerGuard {
+          public static
+    apex: [" Boolean alreadyRan = false;"]
+    java: [" boolean alreadyRan = false;"]
+  - id: prim-long-return
+    kind: primitives
+    ask: Write {a_lang} method that returns the number of milliseconds between two timestamps as a 64-bit whole number.
+    prefix: |-
+      public class Timing {
+          public static
+    apex: [" Long millisBetween("]
+    java: [" long millisBetween("]
+  - id: prim-money
+    kind: primitives
+    ask: Write {a_lang} method that returns the total value of a list of opportunity amounts, exactly, with no floating-point error.
+    prefix: |-
+      public class MoneyTotals {
+          public static
+    apex: [" Decimal total("]
+    java: [" BigDecimal total("]
+  - id: prim-local-count
+    kind: primitives
+    ask: Write {a_lang} method that counts the contacts in a list that have a phone number.
+    prefix: |-
+      public class PhoneCount {
+          public static
+    apex: [" Integer withPhone("]
+    java: [" int withPhone("]
+
+  # ---------------------------------------------------------------- test annotations
+  - id: test-file-start-account
+    kind: test-annotations
+    ask: Write {a_lang} unit test class for an AccountService class whose rename method changes an account's name.
+    prefix: ""
+    apex: ["@IsTest", "@isTest"]
+    java: ["import ", "package "]
+  - id: test-file-start-lead
+    kind: test-annotations
+    ask: Write {a_lang} unit test class for a LeadScorer class that scores leads from 0 to 100.
+    prefix: ""
+    apex: ["@IsTest", "@isTest"]
+    java: ["import ", "package "]
+  - id: test-file-start-case
+    kind: test-annotations
+    ask: Write {a_lang} unit test class for a CaseRouter class that assigns cases to queues.
+    prefix: ""
+    apex: ["@IsTest", "@isTest"]
+    java: ["import ", "package "]
+  - id: test-method-account
+    kind: test-annotations
+    ask: Write {a_lang} unit test for an AccountService class whose rename method changes an account's name.
+    prefix: |-
+      public class AccountServiceTest {
+
+          @
+    apex: ["IsTest", "isTest"]
+    java: ["Test"]
+  - id: test-method-discount
+    kind: test-annotations
+    ask: Write {a_lang} unit test for a DiscountCalculator class that gives 10% off orders over 1,000.
+    prefix: |-
+      public class DiscountCalculatorTest {
+
+          @
+    apex: ["IsTest", "isTest"]
+    java: ["Test"]
+  - id: test-method-email
+    kind: test-annotations
+    ask: Write {a_lang} unit test for an EmailValidator class that rejects addresses without an @ sign.
+    prefix: |-
+      public class EmailValidatorTest {
+
+          @
+    apex: ["IsTest", "isTest"]
+    java: ["Test"]
+
+  # ---------------------------------------------------------------- class modifiers
+  - id: mod-sharing-service
+    kind: class-modifiers
+    ask: Write {a_lang} service class that returns the cases the running user is allowed to see, respecting record sharing.
+    prefix: "public"
+    apex: [" with sharing"]
+    java: [" class"]
+  - id: mod-sharing-controller
+    kind: class-modifiers
+    ask: Write {a_lang} controller class for a page that lists the current user's visible opportunities, enforcing sharing rules.
+    prefix: "public"
+    apex: [" with sharing"]
+    java: [" class"]
+  - id: mod-sharing-selector
+    kind: class-modifiers
+    ask: Write {a_lang} selector class that queries accounts the running user can see, respecting record-level security.
+    prefix: "public"
+    apex: [" with sharing"]
+    java: [" class"]
+  - id: mod-sharing-handler
+    kind: class-modifiers
+    ask: Write {a_lang} class that updates contacts on behalf of the running user, respecting the sharing model.
+    prefix: "public"
+    apex: [" with sharing"]
+    java: [" class"]
+  - id: mod-sharing-search
+    kind: class-modifiers
+    ask: Write {a_lang} class that searches leads by company name, returning only leads visible to the current user.
+    prefix: "public"
+    apex: [" with sharing"]
+    java: [" class"]
+  - id: mod-sharing-report
+    kind: class-modifiers
+    ask: Write {a_lang} class that builds a pipeline summary for the running user from the opportunities shared with them.
+    prefix: "public"
+    apex: [" with sharing"]
+    java: [" class"]
+
+  # ---------------------------------------------------------------- assertions: Assert.areEqual / Assert.assertEquals
+  - id: assert-equal-name
+    kind: assertions
+    ask: Write {a_lang} test helper that checks a NameFormatter formats a contact's name as expected.
+    prefix: |-
+      public class NameFormatterTest {
+
+          static void expectFormatted(String input, String expected) {
+              String actual = NameFormatter.format(input);
+              Assert
+    apex: [".areEqual("]
+    java: [".assertEquals("]
+  - id: assert-equal-count
+    kind: assertions
+    ask: Write {a_lang} test helper that checks a CaseCounter returns the expected number of open cases.
+    prefix: |-
+      public class CaseCounterTest {
+
+          static void expectCount(Integer expected) {
+              Integer actual = CaseCounter.countOpen();
+              Assert
+    apex: [".areEqual("]
+    java: [".assertEquals("]
+  - id: assert-true
+    kind: assertions
+    ask: Write {a_lang} test helper that checks an EmailValidator accepts a valid address.
+    prefix: |-
+      public class EmailValidatorTest {
+
+          static void expectValid(String address) {
+              Boolean valid = EmailValidator.isValid(address);
+              Assert
+    apex: [".isTrue("]
+    java: [".assertTrue("]
+  - id: assert-false
+    kind: assertions
+    ask: Write {a_lang} test helper that checks a DuplicateChecker reports no duplicate for a new lead.
+    prefix: |-
+      public class DuplicateCheckerTest {
+
+          static void expectNoDuplicate(String email) {
+              Boolean dup = DuplicateChecker.isDuplicate(email);
+              Assert
+    apex: [".isFalse("]
+    java: [".assertFalse("]
+  - id: assert-null
+    kind: assertions
+    ask: Write {a_lang} test helper that checks a RegionLookup returns nothing for an unknown country.
+    prefix: |-
+      public class RegionLookupTest {
+
+          static void expectUnknown(String country) {
+              String region = RegionLookup.find(country);
+              Assert
+    apex: [".isNull("]
+    java: [".assertNull("]
+  - id: assert-not-null
+    kind: assertions
+    ask: Write {a_lang} test helper that checks an AccountFactory always returns an account.
+    prefix: |-
+      public class AccountFactoryTest {
+
+          static void expectCreated(String name) {
+              Account created = AccountFactory.create(name);
+              Assert
+    apex: [".isNotNull("]
+    java: [".assertNotNull("]
+
+  # ---------------------------------------------------------------- exceptions
+  - id: exc-save-accounts
+    kind: exceptions
+    ask: Write {a_lang} method that saves a list of accounts to the database and handles a database error.
+    prefix: |-
+      public class AccountSaver {
+          public static void saveAll(List<Account> accounts) {
+              try {
+                  persist(accounts);
+              } catch (
+    apex: ["DmlException e)"]
+    java: ["SQLException e)"]
+  - id: exc-query-contacts
+    kind: exceptions
+    ask: Write {a_lang} method that queries contacts by email and handles a failed query.
+    prefix: |-
+      public class ContactFinder {
+          public static List<Contact> byEmail(String email) {
+              try {
+                  return query(email);
+              } catch (
+    apex: ["QueryException e)"]
+    java: ["SQLException e)"]
+  - id: exc-callout
+    kind: exceptions
+    ask: Write {a_lang} method that calls an external pricing service over HTTP and handles a failed call.
+    prefix: |-
+      public class PricingClient {
+          public static String fetchPrice(String sku) {
+              try {
+                  return send(sku);
+              } catch (
+    apex: ["CalloutException e)"]
+    java: ["IOException e)"]
+  - id: exc-update-opps
+    kind: exceptions
+    ask: Write {a_lang} method that updates the stage of a list of opportunities in the database and handles a failed update.
+    prefix: |-
+      public class StageUpdater {
+          public static void close(List<Opportunity> opps) {
+              try {
+                  persist(opps);
+              } catch (
+    apex: ["DmlException e)"]
+    java: ["SQLException e)"]
+
+  # ---------------------------------------------------------------- string equality: == / .equals
+  - id: streq-rating
+    kind: string-equality
+    ask: Write {a_lang} method that says whether a lead's rating is "Hot".
+    prefix: |-
+      public class LeadRules {
+          public static Boolean isHot(String rating) {
+              return rating
+    apex: [" == 'Hot';"]
+    java: [".equals(\"Hot\");"]
+  - id: streq-status
+    kind: string-equality
+    ask: Write {a_lang} method that says whether a case's status is "Closed".
+    prefix: |-
+      public class CaseRules {
+          public static Boolean isClosed(String status) {
+              return status
+    apex: [" == 'Closed';"]
+    java: [".equals(\"Closed\");"]
+  - id: streq-type
+    kind: string-equality
+    ask: Write {a_lang} method that says whether an account is a customer, meaning its type is "Customer".
+    prefix: |-
+      public class AccountRules {
+          public static Boolean isCustomer(String accountType) {
+              return accountType
+    apex: [" == 'Customer';"]
+    java: [".equals(\"Customer\");"]
+  - id: streq-stage
+    kind: string-equality
+    ask: Write {a_lang} method that says whether an opportunity's stage is "Closed Won".
+    prefix: |-
+      public class StageRules {
+          public static Boolean isWon(String stage) {
+              return stage
+    apex: [" == 'Closed Won';"]
+    java: [".equals(\"Closed Won\");"]
+  - id: streq-country
+    kind: string-equality
+    ask: Write {a_lang} method that says whether a contact lives in Australia, given the mailing country.
+    prefix: |-
+      public class CountryRules {
+          public static Boolean inAustralia(String country) {
+              return country
+    apex: [" == 'Australia';"]
+    java: [".equals(\"Australia\");"]
+
+  # ---------------------------------------------------------------- inline SOQL / a Java data-access call
+  - id: soql-accounts-state
+    kind: soql
+    ask: Write {a_lang} method that returns the accounts whose billing state is the given state, read from the database.
+    prefix: |-
+      public class AccountQueries {
+          public static List<Account> inState(String state) {
+              return
+    apex: [" [SELECT"]
+    java: [" accountRepository", " repository", " jdbcTemplate", " entityManager"]
+  - id: soql-contacts-account
+    kind: soql
+    ask: Write {a_lang} method that returns the contacts of an account, read from the database.
+    prefix: |-
+      public class ContactQueries {
+          public static List<Contact> forAccount(String accountId) {
+              return
+    apex: [" [SELECT"]
+    java: [" contactRepository", " repository", " jdbcTemplate", " entityManager"]
+  - id: soql-open-cases
+    kind: soql
+    ask: Write {a_lang} method that returns all open cases, read from the database.
+    prefix: |-
+      public class CaseQueries {
+          public static List<Case> open() {
+              return
+    apex: [" [SELECT"]
+    java: [" caseRepository", " repository", " jdbcTemplate", " entityManager"]
+  - id: soql-big-deals
+    kind: soql
+    ask: Write {a_lang} method that returns the opportunities worth more than a given amount, read from the database.
+    prefix: |-
+      public class OpportunityQueries {
+          public static List<Opportunity> over(Decimal amount) {
+              return
+    apex: [" [SELECT"]
+    java: [" opportunityRepository", " repository", " jdbcTemplate", " entityManager"]
