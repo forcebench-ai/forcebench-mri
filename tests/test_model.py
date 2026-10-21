@@ -66,3 +66,19 @@ def test_replace_patches_one_run_into_another(subject):
     subject.run(other, Hooks(capture=[0]))
     patched4 = subject.run(TOKENS, Hooks(replace={0: ([4], subject.captured[0][:, 4:5])}))
     assert mx.allclose(patched4[:, :5], subject.run(other)[:, :5], atol=1e-4).item()
+
+
+def test_generate_is_greedy_and_steering_reaches_new_tokens(subject):
+    out = subject.generate(TOKENS, max_tokens=4)
+    # Each token is the argmax of a full forward pass over everything before it.
+    seq = list(TOKENS)
+    for tok in out:
+        assert tok == int(mx.argmax(subject.run(seq)[0, -1]).item())
+        seq.append(tok)
+    vector = mx.ones((TEXT["hidden_size"],)) * 50
+    steered = subject.generate(TOKENS, Hooks(add={1: (slice(None), vector)}), max_tokens=4)
+    seq = list(TOKENS)
+    for tok in steered:
+        assert tok == int(mx.argmax(subject.run(seq, Hooks(add={1: (slice(None), vector)}))[0, -1]).item())
+        seq.append(tok)
+    assert subject.generate(TOKENS, max_tokens=4, stop=[out[0]]) == []

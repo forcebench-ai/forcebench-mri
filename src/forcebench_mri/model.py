@@ -15,6 +15,7 @@ from pathlib import Path
 import mlx.core as mx
 from mlx import nn
 from mlx_lm import load as mlx_load
+from mlx_lm.models.cache import make_prompt_cache
 
 # Positions along the sequence: a slice or explicit indices.
 Positions = slice | Sequence[int]
@@ -107,6 +108,29 @@ class Subject:
             return self.model(tokens)
         finally:
             self._hooks = None
+
+    def generate(
+        self, tokens: Sequence[int], hooks: Hooks | None = None, *, max_tokens: int = 256, stop: Sequence[int] = ()
+    ) -> list[int]:
+        """Greedy continuation of ``tokens`` with ``hooks`` applied to the prompt and to every new token.
+
+        Each step runs only the new token through the cache, so a hook's positions are relative to that step:
+        ``slice(None)`` reaches every position, prompt and continuation alike.
+        """
+        cache = make_prompt_cache(self.model)
+        self._hooks = hooks
+        out: list[int] = []
+        try:
+            logits = self.model(mx.array(tokens)[None], cache=cache)
+            for _ in range(max_tokens):
+                nxt = int(mx.argmax(logits[0, -1]).item())
+                if nxt in stop:
+                    break
+                out.append(nxt)
+                logits = self.model(mx.array([[nxt]]), cache=cache)
+        finally:
+            self._hooks = None
+        return out
 
     def logit_lens(self, hidden: mx.array) -> mx.array:
         """Decode residual vectors as if they were the last layer's: final norm, then unembedding."""
