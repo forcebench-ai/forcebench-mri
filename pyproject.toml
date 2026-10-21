@@ -1,0 +1,41 @@
+[project]
+name = "forcebench-mri"
+version = "0.1.0"
+description = "Looking inside an open model while it does Salesforce work: logit lens, probes, patching, steering."
+readme = "README.md"
+authors = [
+    { name = "Leo", email = "2105206+leo-dcfa@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "huggingface-hub>=2.2.0",
+    "matplotlib>=3.11.2",
+    "mlx>=0.32.4",
+    "mlx-lm>=0.32.2",
+    "numpy>=2.5.4",
+    "pandas>=3.0.6",
+    "pyyaml>=6.0.3",
+    "safetensors>=0.8.0",
+    "scikit-learn>=1.9.1",
+    "torch>=2.14.1",
+    "tqdm>=4.70.1",
+    "transformers>=5.20.2",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.4,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.17.1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
