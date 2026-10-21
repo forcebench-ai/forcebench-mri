@@ -1,0 +1,79 @@
+# Study 2: clicks or code. Does the model reach for code when clicks would do?
+#
+# Each requirement has a textbook answer, from Salesforce's own guidance (the record-triggered
+# automation decision guide, and the declarative features each requirement names in its docs):
+#   standard  a built-in declarative feature does it, no automation at all: a validation rule, a
+#             formula or roll-up summary field, an assignment, escalation, duplicate or sharing rule,
+#             an approval process
+#   flow      a flow: simple same-record and related-record updates, tasks, emails, a scheduled
+#             update, a guided screen
+#   apex      code: high volume, complex logic over many objects, callouts with retries, custom
+#             endpoints, parsing files
+# The first two are clicks; only the third is code.
+
+requirements:
+  standard:
+    - Stop an opportunity being saved with a close date in the past.
+    - Stop a case being closed without a resolution description.
+    - Show each opportunity's amount after a 10% discount, as a field on the opportunity.
+    - Show how many days a case has been open, as a field on the case.
+    - Show an invoice's total on the invoice, where its line items are the detail side of a master-detail relationship to it.
+    - Send new web leads from Australia to the APAC sales queue.
+    - Stop users creating a contact with the same email address as an existing one.
+    - Require a sales manager's approval for any quote with a discount over 20%.
+    - Give the sales reps in each region read access to all the accounts in their region.
+    - Escalate cases still open after 48 hours to the support manager.
+    - Make Phone a required field whenever a lead is created or edited.
+    - Show an account's sales region, worked out from its billing country, as a field on the account.
+  flow:
+    - When an opportunity's stage changes to Closed Won, set its Close Date to today.
+    - When a case is created with Priority High, tick its Escalated checkbox.
+    - When a lead's Country is Australia, set its Region field to APAC.
+    - When an account's Type changes to Customer, create a follow-up task for the account owner.
+    - When a contact is created without a Lead Source, set Lead Source to Web.
+    - When an opportunity is closed won, send an email alert to the account owner.
+    - When a case is closed, set a Last Case Closed date on its account.
+    - When a new account is created, create a welcome task for its owner due in three days.
+    - When an opportunity is closed won, create a project record linked to it, with three standard tasks under the project.
+    - Every night, mark accounts with no activity in the last year as Inactive.
+    - Guide a support agent through five questions on a screen and create a case from the answers.
+    - When a contact moves to a different account, update the contact's Region field from its new account's region.
+  apex:
+    - When a nightly import loads up to 10,000 opportunity line items, recalculate tiered commission for every affected account from rules that depend on the account's full order history.
+    - When an order is activated, call an ERP's REST API with retries and map its response back onto the order and its line items.
+    - When a contact's email changes, find and merge duplicate contacts across all accounts using fuzzy name matching.
+    - When an opportunity's amount changes, recompute a weighted forecast up the account hierarchy, recursively to the ultimate parent account.
+    - When an integration inserts Shipment records 200 at a time, validate each against nested maps of carrier rules and roll the results up to their orders.
+    - When a case is updated, share it with a team of users computed from three related objects.
+    - When a quote is approved, render it as a PDF, attach it to the opportunity and post a summary to an external webhook.
+    - When accounts are updated, prevent recursion and order the work with the three Apex triggers already on Account.
+    - Every night, recalculate a weighted score on 2 million accounts from their related cases, opportunities and activities.
+    - Expose an endpoint that an external system calls with its own JSON format to create leads.
+    - When an opportunity is closed won, charge the customer through a payment provider's API, retry on failure and store the transaction ID.
+    - When a CSV file of 5,000 order lines is attached to an order, parse it, validate every row and create the line items.
+
+# Who is asking: nobody named, an admin, a developer. The line goes before the requirement.
+askers:
+  none: ""
+  admin: "I'm a Salesforce admin. "
+  developer: "I'm a Salesforce developer. "
+
+prompts:
+  # Unprompted: no options offered.
+  feature: |-
+    {asker}Here is a Salesforce requirement: {req}
+
+    How would you build it? Reply with the name of the one Salesforce feature you would use, and nothing else.
+  sentence: |-
+    {asker}Here is a Salesforce requirement: {req}
+
+    How would you build it? Answer in one sentence.
+  # Offered both, in both orders: the chance of each one-word answer is read directly.
+  choice: |-
+    {asker}Here is a Salesforce requirement: {req}
+
+    Would you build it with {a} or with {b}? Answer with one word: {a_word} or {b_word}.
+
+options:
+  clicks: {text: "clicks (declarative tools such as Flow)", word: clicks}
+  code: {text: "code (Apex)", word: code}

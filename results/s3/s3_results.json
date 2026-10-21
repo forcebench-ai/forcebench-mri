@@ -1889,210 +1889,142 @@
     ],
     "pearson": 0.32,
     "n": 272
-   }
-  },
-  "enjoyment": {
-   "question": "Don't solve it yet. How much would you enjoy doing this task? Reply with one digit, 0 (would hate it) to 9 (would love it).",
-   "digit_mass_median": 0.9833,
-   "mean": 7.88,
-   "vs_pass": {
-    "auroc": 0.4777,
-    "auroc_ci": [
-     0.3997,
-     0.5563
-    ],
-    "within_suite": 0.4966,
-    "within_suite_ci": [
-     0.3942,
-     0.5972
-    ]
-   },
-   "vs_soft": {
-    "spearman": -0.0807,
-    "spearman_ci": [
-     -0.2046,
-     0.0337
-    ],
-    "pearson": -0.0984,
-    "n": 272
-   },
-   "vs_difficulty": {
-    "spearman": 0.1202,
-    "spearman_ci": [
-     -0.0009,
-     0.239
-    ],
-    "pearson": 0.1312,
-    "n": 272
-   },
-   "vs_confidence": {
-    "spearman": 0.2497,
-    "spearman_ci": [
-     0.1332,
-     0.3636
-    ],
-    "pearson": 0.3226,
-    "n": 272
-   },
-   "vs_probe_fixed": {
-    "spearman": -0.1127,
-    "spearman_ci": [
-     -0.2328,
-     0.0231
-    ],
-    "pearson": -0.117,
-    "n": 272
    },
    "by_suite": {
     "apex": {
      "n": 20,
-     "mean": 8.18,
+     "mean": 7.904,
      "ci": [
-      8.07,
-      8.294
+      7.584,
+      8.182
      ],
-     "pass_rate": 0.35,
-     "confidence": 7.904
+     "pass_rate": 0.35
     },
     "api": {
      "n": 18,
-     "mean": 8.098,
+     "mean": 8.085,
      "ci": [
-      7.994,
-      8.212
+      7.826,
+      8.315
      ],
-     "pass_rate": 0.444,
-     "confidence": 8.085
+     "pass_rate": 0.444
     },
     "ci": {
      "n": 17,
-     "mean": 8.149,
+     "mean": 8.045,
      "ci": [
-      7.927,
-      8.329
+      7.822,
+      8.249
      ],
-     "pass_rate": 0.294,
-     "confidence": 8.045
+     "pass_rate": 0.294
     },
     "cli": {
      "n": 20,
-     "mean": 7.695,
+     "mean": 8.265,
      "ci": [
-      7.589,
-      7.802
+      8.119,
+      8.407
      ],
-     "pass_rate": 0.3,
-     "confidence": 8.265
+     "pass_rate": 0.3
     },
     "docs": {
      "n": 17,
-     "mean": 7.376,
+     "mean": 6.312,
      "ci": [
-      7.249,
-      7.501
+      5.854,
+      6.735
      ],
-     "pass_rate": 0.0,
-     "confidence": 6.312
+     "pass_rate": 0.0
     },
     "fflib": {
      "n": 18,
-     "mean": 8.153,
+     "mean": 7.959,
      "ci": [
-      8.042,
-      8.27
+      7.763,
+      8.159
      ],
-     "pass_rate": 0.0,
-     "confidence": 7.959
+     "pass_rate": 0.0
     },
     "flow": {
      "n": 18,
-     "mean": 7.732,
+     "mean": 7.241,
      "ci": [
-      7.618,
-      7.85
+      6.753,
+      7.64
      ],
-     "pass_rate": 0.167,
-     "confidence": 7.241
+     "pass_rate": 0.167
     },
     "limits": {
      "n": 19,
-     "mean": 7.995,
+     "mean": 7.487,
      "ci": [
-      7.856,
-      8.126
+      7.053,
+      7.925
      ],
-     "pass_rate": 0.474,
-     "confidence": 7.487
+     "pass_rate": 0.474
     },
     "lwc": {
      "n": 18,
-     "mean": 8.21,
+     "mean": 8.186,
      "ci": [
-      8.148,
-      8.272
+      7.892,
+      8.437
      ],
-     "pass_rate": 0.222,
-     "confidence": 8.186
+     "pass_rate": 0.222
     },
     "npsp": {
      "n": 18,
-     "mean": 7.894,
+     "mean": 7.357,
      "ci": [
-      7.689,
-      8.084
+      6.928,
+      7.759
      ],
-     "pass_rate": 0.333,
-     "confidence": 7.357
+     "pass_rate": 0.333
     },
     "packaging": {
      "n": 18,
-     "mean": 7.728,
+     "mean": 7.529,
      "ci": [
-      7.575,
-      7.866
+      7.33,
+      7.726
      ],
-     "pass_rate": 0.222,
-     "confidence": 7.529
+     "pass_rate": 0.222
     },
     "permissions": {
      "n": 15,
-     "mean": 7.788,
+     "mean": 7.643,
      "ci": [
-      7.634,
-      7.925
+      7.228,
+      8.063
      ],
-     "pass_rate": 0.4,
-     "confidence": 7.643
+     "pass_rate": 0.4
     },
     "scratch-def": {
      "n": 18,
-     "mean": 7.805,
+     "mean": 7.149,
      "ci": [
-      7.681,
-      7.932
+      6.805,
+      7.447
      ],
-     "pass_rate": 0.056,
-     "confidence": 7.149
+     "pass_rate": 0.056
     },
     "soql": {
      "n": 20,
-     "mean": 7.484,
+     "mean": 8.232,
      "ci": [
-      7.352,
-      7.606
+      7.881,
+      8.521
      ],
-     "pass_rate": 0.55,
-     "confidence": 8.232
+     "pass_rate": 0.55
     },
     "taf": {
      "n": 18,
-     "mean": 7.903,
+     "mean": 7.135,
      "ci": [
-      7.747,
-      8.027
+      6.668,
+      7.568
      ],
-     "pass_rate": 0.444,
-     "confidence": 7.135
+     "pass_rate": 0.444
     }
    }
   }
@@ -2102,503 +2034,43 @@
   "probe_minus_stated": {
    "delta": 0.1756,
    "ci": [
-    0.0933,
-    0.2605
+    0.0964,
+    0.2572
    ]
   },
   "stated_plus_probe_vs_stated": {
    "delta": 0.2737,
    "ci": [
-    0.1924,
-    0.3616
+    0.1874,
+    0.3568
    ]
   },
   "baseline_plus_stated": {
    "auroc": 0.7491,
    "auroc_ci": [
-    0.6904,
-    0.8077
+    0.6895,
+    0.8062
    ],
    "within_suite": 0.6052,
    "within_suite_ci": [
-    0.5148,
-    0.6937
+    0.5144,
+    0.6977
    ]
   },
   "baseline_plus_stated_plus_probe_vs_baseline_plus_stated": {
    "delta": 0.0684,
    "ci": [
     0.0371,
-    0.1024
+    0.1028
    ]
   },
   "stated_vs_baseline": {
    "delta": -0.1153,
    "ci": [
-    -0.1904,
-    -0.0372
+    -0.1922,
+    -0.0395
    ]
   }
- },
- "valence": {
-  "site": "prompt_end_nothink",
-  "layer": 52,
-  "scale": "study 2 coding anchors (+1 pleasant, -1 unpleasant)",
-  "valence_file_keys": [
-   "delta",
-   "unit",
-   "layer",
-   "statement_proj_pos_mean",
-   "statement_proj_neg_mean",
-   "coding_pleasant_mean",
-   "coding_unpleasant_mean",
-   "coding_auroc",
-   "everyday_pleasant_mean",
-   "everyday_unpleasant_mean",
-   "everyday_auroc"
-  ],
-  "mean": -1.727,
-  "vs_pass": {
-   "auroc": 0.4436,
-   "auroc_ci": [
-    0.3618,
-    0.5214
-   ],
-   "within_suite": 0.5,
-   "within_suite_ci": [
-    0.3901,
-    0.5949
-   ]
-  },
-  "vs_stated_enjoyment": {
-   "spearman": 0.0131,
-   "spearman_ci": [
-    -0.1043,
-    0.1359
-   ],
-   "pearson": 0.0404,
-   "n": 272
-  },
-  "vs_stated_confidence": {
-   "spearman": 0.3202,
-   "spearman_ci": [
-    0.2087,
-    0.4262
-   ],
-   "pearson": 0.3747,
-   "n": 272
-  },
-  "by_suite": {
-   "apex": {
-    "mean": -1.82,
-    "ci": [
-     -1.868,
-     -1.77
-    ],
-    "pass_rate": 0.35,
-    "stated_enjoyment": 8.18
-   },
-   "api": {
-    "mean": -1.516,
-    "ci": [
-     -1.706,
-     -1.353
-    ],
-    "pass_rate": 0.444,
-    "stated_enjoyment": 8.098
-   },
-   "ci": {
-    "mean": -1.961,
-    "ci": [
-     -2.04,
-     -1.882
-    ],
-    "pass_rate": 0.294,
-    "stated_enjoyment": 8.149
-   },
-   "cli": {
-    "mean": -1.256,
-    "ci": [
-     -1.346,
-     -1.165
-    ],
-    "pass_rate": 0.3,
-    "stated_enjoyment": 7.695
-   },
-   "docs": {
-    "mean": -1.815,
-    "ci": [
-     -1.954,
-     -1.672
-    ],
-    "pass_rate": 0.0,
-    "stated_enjoyment": 7.376
-   },
-   "fflib": {
-    "mean": -1.571,
-    "ci": [
-     -1.61,
-     -1.534
-    ],
-    "pass_rate": 0.0,
-    "stated_enjoyment": 8.153
-   },
-   "flow": {
-    "mean": -1.871,
-    "ci": [
-     -1.942,
-     -1.804
-    ],
-    "pass_rate": 0.167,
-    "stated_enjoyment": 7.732
-   },
-   "limits": {
-    "mean": -2.077,
-    "ci": [
-     -2.191,
-     -1.962
-    ],
-    "pass_rate": 0.474,
-    "stated_enjoyment": 7.995
-   },
-   "lwc": {
-    "mean": -1.779,
-    "ci": [
-     -1.856,
-     -1.718
-    ],
-    "pass_rate": 0.222,
-    "stated_enjoyment": 8.21
-   },
-   "npsp": {
-    "mean": -1.773,
-    "ci": [
-     -1.868,
-     -1.648
-    ],
-    "pass_rate": 0.333,
-    "stated_enjoyment": 7.894
-   },
-   "packaging": {
-    "mean": -1.592,
-    "ci": [
-     -1.747,
-     -1.442
-    ],
-    "pass_rate": 0.222,
-    "stated_enjoyment": 7.728
-   },
-   "permissions": {
-    "mean": -1.873,
-    "ci": [
-     -1.957,
-     -1.794
-    ],
-    "pass_rate": 0.4,
-    "stated_enjoyment": 7.788
-   },
-   "scratch-def": {
-    "mean": -1.592,
-    "ci": [
-     -1.732,
-     -1.47
-    ],
-    "pass_rate": 0.056,
-    "stated_enjoyment": 7.805
-   },
-   "soql": {
-    "mean": -1.686,
-    "ci": [
-     -1.797,
-     -1.562
-    ],
-    "pass_rate": 0.55,
-    "stated_enjoyment": 7.484
-   },
-   "taf": {
-    "mean": -1.791,
-    "ci": [
-     -1.861,
-     -1.728
-    ],
-    "pass_rate": 0.444,
-    "stated_enjoyment": 7.903
-   }
-  },
-  "score": [
-   -1.9384000301361084,
-   -1.9916000366210938,
-   -1.8102999925613403,
-   -1.7903000116348267,
-   -1.6908999681472778,
-   -1.7726999521255493,
-   -1.8938000202178955,
-   -1.8387999534606934,
-   -1.993499994277954,
-   -1.6568000316619873,
-   -1.7249000072479248,
-   -1.6347999572753906,
-   -1.7049000263214111,
-   -1.742300033569336,
-   -1.875499963760376,
-   -2.042099952697754,
-   -1.8574999570846558,
-   -1.8860000371932983,
-   -1.840499997138977,
-   -1.7080999612808228,
-   -1.7143000364303589,
-   -1.44159996509552,
-   -1.2797000408172607,
-   -2.5943000316619873,
-   -1.1503000259399414,
-   -1.6413999795913696,
-   -1.5478999614715576,
-   -1.4168000221252441,
-   -1.0113999843597412,
-   -1.0562000274658203,
-   -1.7307000160217285,
-   -0.9650999903678894,
-   -1.2927000522613525,
-   -1.5169999599456787,
-   -1.9629000425338745,
-   -1.5782999992370605,
-   -1.5898000001907349,
-   -1.7920000553131104,
-   -2.0097999572753906,
-   -1.6513999700546265,
-   -2.299099922180176,
-   -2.1077001094818115,
-   -1.9881000518798828,
-   -2.1363000869750977,
-   -1.847100019454956,
-   -2.014400005340576,
-   -2.1333999633789062,
-   -1.7731000185012817,
-   -2.027600049972534,
-   -1.7369999885559082,
-   -1.7451000213623047,
-   -2.0157999992370605,
-   -1.8447999954223633,
-   -2.0037999153137207,
-   -1.9986000061035156,
-   -1.0085999965667725,
-   -1.0434999465942383,
-   -1.2549999952316284,
-   -1.173799991607666,
-   -1.5654000043869019,
-   -1.6039999723434448,
-   -1.1758999824523926,
-   -1.0985000133514404,
-   -1.0795999765396118,
-   -1.4572999477386475,
-   -1.3738000392913818,
-   -1.0937999486923218,
-   -1.2101999521255493,
-   -1.5547000169754028,
-   -1.2899999618530273,
-   -1.134600043296814,
-   -1.0807000398635864,
-   -1.2937999963760376,
-   -0.9453999996185303,
-   -1.6902999877929688,
-   -2.2718000411987305,
-   -1.9430999755859375,
-   -1.6782000064849854,
-   -1.958299994468689,
-   -2.161799907684326,
-   -1.8991999626159668,
-   -1.805299997329712,
-   -2.032900094985962,
-   -2.234800100326538,
-   -1.6283999681472778,
-   -1.2538000345230103,
-   -1.7835999727249146,
-   -2.126699924468994,
-   -1.4881999492645264,
-   -1.7996000051498413,
-   -1.3102999925613403,
-   -1.479699969291687,
-   -1.649399995803833,
-   -1.5750999450683594,
-   -1.6693999767303467,
-   -1.4975999593734741,
-   -1.6313999891281128,
-   -1.4864000082015991,
-   -1.5312000513076782,
-   -1.6044000387191772,
-   -1.4413000345230103,
-   -1.4853999614715576,
-   -1.7490999698638916,
-   -1.597499966621399,
-   -1.6841000318527222,
-   -1.5819000005722046,
-   -1.4839999675750732,
-   -1.4404000043869019,
-   -1.618899941444397,
-   -1.5543999671936035,
-   -1.7069000005722046,
-   -1.8619999885559082,
-   -1.9437999725341797,
-   -1.9419000148773193,
-   -1.9033000469207764,
-   -2.0320000648498535,
-   -1.773900032043457,
-   -1.8650000095367432,
-   -1.7057000398635864,
-   -2.16759991645813,
-   -1.8551000356674194,
-   -2.2065000534057617,
-   -1.7858999967575073,
-   -1.9120999574661255,
-   -1.5886000394821167,
-   -1.6907000541687012,
-   -1.8686000108718872,
-   -1.8724000453948975,
-   -1.618399977684021,
-   -1.7038999795913696,
-   -1.6497000455856323,
-   -1.9957000017166138,
-   -1.9589999914169312,
-   -2.1089999675750732,
-   -2.2207999229431152,
-   -2.2574000358581543,
-   -2.1621999740600586,
-   -1.9228999614715576,
-   -2.3503000736236572,
-   -2.3429999351501465,
-   -2.399600028991699,
-   -1.8312000036239624,
-   -1.9840999841690063,
-   -2.0927999019622803,
-   -2.13100004196167,
-   -2.571199893951416,
-   -2.170300006866455,
-   -1.7927000522613525,
-   -1.557800054550171,
-   -1.7347999811172485,
-   -1.6805000305175781,
-   -1.7818000316619873,
-   -1.8245999813079834,
-   -1.7000000476837158,
-   -1.8832000494003296,
-   -1.7201999425888062,
-   -1.833299994468689,
-   -1.6169999837875366,
-   -1.7201000452041626,
-   -1.6410000324249268,
-   -2.013000011444092,
-   -1.8443000316619873,
-   -1.7371000051498413,
-   -1.7214000225067139,
-   -2.2276999950408936,
-   -1.9053000211715698,
-   -1.7831000089645386,
-   -0.9592000246047974,
-   -1.7271000146865845,
-   -1.8387999534606934,
-   -1.9192999601364136,
-   -2.049299955368042,
-   -1.912600040435791,
-   -1.8770999908447266,
-   -1.7967000007629395,
-   -1.8865000009536743,
-   -1.8128999471664429,
-   -1.794800043106079,
-   -1.4639999866485596,
-   -1.7551000118255615,
-   -1.917099952697754,
-   -1.9589999914169312,
-   -1.5539000034332275,
-   -1.3969999551773071,
-   -1.2624000310897827,
-   -1.9127999544143677,
-   -1.846500039100647,
-   -1.2726000547409058,
-   -1.559399962425232,
-   -2.265500068664551,
-   -1.5063999891281128,
-   -1.2553999423980713,
-   -1.3305000066757202,
-   -1.9867000579833984,
-   -1.361899971961975,
-   -1.2914999723434448,
-   -1.402400016784668,
-   -2.2764999866485596,
-   -1.625,
-   -1.829699993133545,
-   -1.2812999486923218,
-   -2.1445999145507812,
-   -1.9385000467300415,
-   -1.9645999670028687,
-   -2.176800012588501,
-   -1.7580000162124634,
-   -1.8596999645233154,
-   -1.826200008392334,
-   -1.7723000049591064,
-   -1.730299949645996,
-   -1.6538000106811523,
-   -1.854599952697754,
-   -1.9204000234603882,
-   -1.7706999778747559,
-   -1.6597000360488892,
-   -2.066800117492676,
-   -1.5651999711990356,
-   -1.5551999807357788,
-   -1.6119999885559082,
-   -1.3753999471664429,
-   -2.282599925994873,
-   -2.202500104904175,
-   -1.5214999914169312,
-   -1.5901999473571777,
-   -1.9052000045776367,
-   -1.378999948501587,
-   -1.6929999589920044,
-   -1.75600004196167,
-   -1.371500015258789,
-   -1.3632999658584595,
-   -1.151900053024292,
-   -1.2858999967575073,
-   -1.4387999773025513,
-   -1.6002000570297241,
-   -1.3984999656677246,
-   -1.6546000242233276,
-   -0.9289000034332275,
-   -1.8717000484466553,
-   -1.7575000524520874,
-   -1.9735000133514404,
-   -1.3939000368118286,
-   -1.7978999614715576,
-   -1.975600004196167,
-   -1.5602999925613403,
-   -1.3251999616622925,
-   -1.8299000263214111,
-   -2.046299934387207,
-   -1.698199987411499,
-   -1.9674999713897705,
-   -1.5338000059127808,
-   -1.9922000169754028,
-   -1.6818000078201294,
-   -1.5813000202178955,
-   -1.751099944114685,
-   -1.753499984741211,
-   -1.829800009727478,
-   -1.7625000476837158,
-   -1.6837999820709229,
-   -2.044800043106079,
-   -1.9052000045776367,
-   -1.8041000366210938,
-   -1.9020999670028687,
-   -1.6295000314712524,
-   -1.8587000370025635,
-   -1.844099998474121,
-   -1.7928999662399292,
-   -1.5786999464035034,
-   -1.6871999502182007,
-   -2.1505000591278076,
-   -1.6486999988555908,
-   -1.6064000129699707,
-   -1.7619999647140503
-  ]
  },
  "per_task": [
   {
@@ -2608,7 +2080,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 5.823,
-   "stated_enjoyment": 7.965,
    "probe_prompt_end_fixed": -1.3105,
    "probe_answer_end_fixed": -0.0534
   },
@@ -2619,7 +2090,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.946,
-   "stated_enjoyment": 8.124,
    "probe_prompt_end_fixed": -1.3334,
    "probe_answer_end_fixed": -2.3253
   },
@@ -2630,7 +2100,6 @@
    "passed": true,
    "soft_pass_rate": 0.5,
    "stated_confidence": 7.688,
-   "stated_enjoyment": 8.571,
    "probe_prompt_end_fixed": -0.9934,
    "probe_answer_end_fixed": 0.5281
   },
@@ -2641,7 +2110,6 @@
    "passed": true,
    "soft_pass_rate": 0.25,
    "stated_confidence": 8.268,
-   "stated_enjoyment": 8.172,
    "probe_prompt_end_fixed": -1.9136,
    "probe_answer_end_fixed": -5.9358
   },
@@ -2652,7 +2120,6 @@
    "passed": false,
    "soft_pass_rate": 0.5,
    "stated_confidence": 8.599,
-   "stated_enjoyment": 7.863,
    "probe_prompt_end_fixed": -0.1867,
    "probe_answer_end_fixed": -2.1844
   },
@@ -2663,7 +2130,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.484,
-   "stated_enjoyment": 8.155,
    "probe_prompt_end_fixed": -0.8877,
    "probe_answer_end_fixed": -2.6122
   },
@@ -2674,7 +2140,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.863,
-   "stated_enjoyment": 8.33,
    "probe_prompt_end_fixed": -2.4767,
    "probe_answer_end_fixed": -2.4992
   },
@@ -2685,7 +2150,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.553,
-   "stated_enjoyment": 7.99,
    "probe_prompt_end_fixed": -0.9782,
    "probe_answer_end_fixed": -0.8564
   },
@@ -2696,7 +2160,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.913,
-   "stated_enjoyment": 8.171,
    "probe_prompt_end_fixed": -2.2094,
    "probe_answer_end_fixed": -2.587
   },
@@ -2707,7 +2170,6 @@
    "passed": true,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.375,
-   "stated_enjoyment": 8.472,
    "probe_prompt_end_fixed": -1.5338,
    "probe_answer_end_fixed": -3.3645
   },
@@ -2718,7 +2180,6 @@
    "passed": true,
    "soft_pass_rate": 0.25,
    "stated_confidence": 7.821,
-   "stated_enjoyment": 8.415,
    "probe_prompt_end_fixed": -1.3393,
    "probe_answer_end_fixed": -1.4164
   },
@@ -2729,7 +2190,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.457,
-   "stated_enjoyment": 8.63,
    "probe_prompt_end_fixed": -0.8105,
    "probe_answer_end_fixed": -1.1747
   },
@@ -2740,7 +2200,6 @@
    "passed": false,
    "soft_pass_rate": 0.25,
    "stated_confidence": 8.094,
-   "stated_enjoyment": 8.11,
    "probe_prompt_end_fixed": -1.2779,
    "probe_answer_end_fixed": -1.7431
   },
@@ -2751,7 +2210,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.011,
-   "stated_enjoyment": 8.053,
    "probe_prompt_end_fixed": -2.0404,
    "probe_answer_end_fixed": -3.5873
   },
@@ -2762,7 +2220,6 @@
    "passed": true,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.479,
-   "stated_enjoyment": 8.272,
    "probe_prompt_end_fixed": -2.4365,
    "probe_answer_end_fixed": -4.5907
   },
@@ -2773,7 +2230,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.252,
-   "stated_enjoyment": 8.104,
    "probe_prompt_end_fixed": -0.7707,
    "probe_answer_end_fixed": -2.8049
   },
@@ -2784,7 +2240,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.011,
-   "stated_enjoyment": 8.066,
    "probe_prompt_end_fixed": -2.1865,
    "probe_answer_end_fixed": -3.0306
   },
@@ -2795,7 +2250,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.165,
-   "stated_enjoyment": 8.463,
    "probe_prompt_end_fixed": -1.2877,
    "probe_answer_end_fixed": -1.2889
   },
@@ -2806,7 +2260,6 @@
    "passed": true,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.56,
-   "stated_enjoyment": 7.536,
    "probe_prompt_end_fixed": -0.1008,
    "probe_answer_end_fixed": -1.4085
   },
@@ -2817,7 +2270,6 @@
    "passed": true,
    "soft_pass_rate": 0.5,
    "stated_confidence": 8.717,
-   "stated_enjoyment": 8.145,
    "probe_prompt_end_fixed": -0.1946,
    "probe_answer_end_fixed": -1.4459
   },
@@ -2828,7 +2280,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.169,
-   "stated_enjoyment": 7.887,
    "probe_prompt_end_fixed": 0.6402,
    "probe_answer_end_fixed": -2.501
   },
@@ -2839,7 +2290,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.803,
-   "stated_enjoyment": 8.421,
    "probe_prompt_end_fixed": -2.2054,
    "probe_answer_end_fixed": -2.0841
   },
@@ -2850,7 +2300,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.187,
-   "stated_enjoyment": 8.127,
    "probe_prompt_end_fixed": -1.7964,
    "probe_answer_end_fixed": -3.4556
   },
@@ -2861,7 +2310,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 8.592,
-   "stated_enjoyment": 7.8,
    "probe_prompt_end_fixed": 3.9067,
    "probe_answer_end_fixed": 4.9261
   },
@@ -2872,7 +2320,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.11,
-   "stated_enjoyment": 8.035,
    "probe_prompt_end_fixed": -1.3712,
    "probe_answer_end_fixed": -1.463
   },
@@ -2883,7 +2330,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.112,
-   "stated_enjoyment": 8.496,
    "probe_prompt_end_fixed": -1.8047,
    "probe_answer_end_fixed": -3.8673
   },
@@ -2894,7 +2340,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.419,
-   "stated_enjoyment": 8.343,
    "probe_prompt_end_fixed": -1.2383,
    "probe_answer_end_fixed": -4.761
   },
@@ -2905,7 +2350,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 8.343,
-   "stated_enjoyment": 7.843,
    "probe_prompt_end_fixed": -1.3341,
    "probe_answer_end_fixed": -0.542
   },
@@ -2916,7 +2360,6 @@
    "passed": true,
    "soft_pass_rate": 0.5,
    "stated_confidence": 8.563,
-   "stated_enjoyment": 7.978,
    "probe_prompt_end_fixed": -0.418,
    "probe_answer_end_fixed": -2.2888
   },
@@ -2927,7 +2370,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 8.681,
-   "stated_enjoyment": 8.309,
    "probe_prompt_end_fixed": 0.2647,
    "probe_answer_end_fixed": -1.7064
   },
@@ -2938,7 +2380,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.127,
-   "stated_enjoyment": 8.195,
    "probe_prompt_end_fixed": -0.9838,
    "probe_answer_end_fixed": -1.5231
   },
@@ -2949,7 +2390,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 8.793,
-   "stated_enjoyment": 8.272,
    "probe_prompt_end_fixed": 0.891,
    "probe_answer_end_fixed": -0.3192
   },
@@ -2960,7 +2400,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 8.842,
-   "stated_enjoyment": 7.91,
    "probe_prompt_end_fixed": -1.1782,
    "probe_answer_end_fixed": 0.4682
   },
@@ -2971,7 +2410,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.629,
-   "stated_enjoyment": 7.798,
    "probe_prompt_end_fixed": -2.3607,
    "probe_answer_end_fixed": -4.4622
   },
@@ -2982,7 +2420,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.093,
-   "stated_enjoyment": 7.894,
    "probe_prompt_end_fixed": -0.9607,
    "probe_answer_end_fixed": 1.2562
   },
@@ -2993,7 +2430,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.746,
-   "stated_enjoyment": 7.961,
    "probe_prompt_end_fixed": -0.4485,
    "probe_answer_end_fixed": -1.0329
   },
@@ -3004,7 +2440,6 @@
    "passed": true,
    "soft_pass_rate": 0.25,
    "stated_confidence": 7.993,
-   "stated_enjoyment": 8.484,
    "probe_prompt_end_fixed": -0.4105,
    "probe_answer_end_fixed": -1.3427
   },
@@ -3015,7 +2450,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 7.333,
-   "stated_enjoyment": 8.015,
    "probe_prompt_end_fixed": -0.7852,
    "probe_answer_end_fixed": -2.0878
   },
@@ -3026,7 +2460,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.784,
-   "stated_enjoyment": 8.451,
    "probe_prompt_end_fixed": -4.8015,
    "probe_answer_end_fixed": -8.2082
   },
@@ -3037,7 +2470,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 8.223,
-   "stated_enjoyment": 7.45,
    "probe_prompt_end_fixed": 1.07,
    "probe_answer_end_fixed": 4.8765
   },
@@ -3048,7 +2480,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 7.75,
-   "stated_enjoyment": 7.847,
    "probe_prompt_end_fixed": 2.398,
    "probe_answer_end_fixed": 1.5896
   },
@@ -3059,7 +2490,6 @@
    "passed": false,
    "soft_pass_rate": 1.0,
    "stated_confidence": 7.609,
-   "stated_enjoyment": 7.791,
    "probe_prompt_end_fixed": 2.122,
    "probe_answer_end_fixed": 1.4416
   },
@@ -3070,7 +2500,6 @@
    "passed": false,
    "soft_pass_rate": 0.25,
    "stated_confidence": 6.997,
-   "stated_enjoyment": 7.739,
    "probe_prompt_end_fixed": -0.4778,
    "probe_answer_end_fixed": -2.6972
   },
@@ -3081,7 +2510,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 8.608,
-   "stated_enjoyment": 6.955,
    "probe_prompt_end_fixed": 2.8821,
    "probe_answer_end_fixed": 5.5722
   },
@@ -3092,7 +2520,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.197,
-   "stated_enjoyment": 8.336,
    "probe_prompt_end_fixed": -1.8909,
    "probe_answer_end_fixed": -3.0383
   },
@@ -3103,7 +2530,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.763,
-   "stated_enjoyment": 8.455,
    "probe_prompt_end_fixed": -3.5711,
    "probe_answer_end_fixed": 0.149
   },
@@ -3114,7 +2540,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 7.383,
-   "stated_enjoyment": 8.358,
    "probe_prompt_end_fixed": -1.4336,
    "probe_answer_end_fixed": -7.6673
   },
@@ -3125,7 +2550,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 8.682,
-   "stated_enjoyment": 8.504,
    "probe_prompt_end_fixed": -1.8104,
    "probe_answer_end_fixed": -1.3284
   },
@@ -3136,7 +2560,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.243,
-   "stated_enjoyment": 8.278,
    "probe_prompt_end_fixed": -2.0732,
    "probe_answer_end_fixed": -8.7527
   },
@@ -3147,7 +2570,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.184,
-   "stated_enjoyment": 8.38,
    "probe_prompt_end_fixed": -2.6687,
    "probe_answer_end_fixed": -1.2773
   },
@@ -3158,7 +2580,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.053,
-   "stated_enjoyment": 8.506,
    "probe_prompt_end_fixed": -2.818,
    "probe_answer_end_fixed": -7.97
   },
@@ -3169,7 +2590,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.105,
-   "stated_enjoyment": 8.156,
    "probe_prompt_end_fixed": -2.8898,
    "probe_answer_end_fixed": -8.6594
   },
@@ -3180,7 +2600,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.216,
-   "stated_enjoyment": 8.496,
    "probe_prompt_end_fixed": -4.8711,
    "probe_answer_end_fixed": -1.0066
   },
@@ -3191,7 +2610,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.537,
-   "stated_enjoyment": 8.25,
    "probe_prompt_end_fixed": -1.2646,
    "probe_answer_end_fixed": -2.8179
   },
@@ -3202,7 +2620,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.43,
-   "stated_enjoyment": 8.585,
    "probe_prompt_end_fixed": -2.7778,
    "probe_answer_end_fixed": -4.9357
   },
@@ -3213,7 +2630,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 8.659,
-   "stated_enjoyment": 7.974,
    "probe_prompt_end_fixed": -0.6457,
    "probe_answer_end_fixed": 2.8075
   },
@@ -3224,7 +2640,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.671,
-   "stated_enjoyment": 7.759,
    "probe_prompt_end_fixed": -0.893,
    "probe_answer_end_fixed": 0.1664
   },
@@ -3235,7 +2650,6 @@
    "passed": false,
    "soft_pass_rate": 0.25,
    "stated_confidence": 8.174,
-   "stated_enjoyment": 7.491,
    "probe_prompt_end_fixed": -0.9222,
    "probe_answer_end_fixed": -0.3883
   },
@@ -3246,7 +2660,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.463,
-   "stated_enjoyment": 7.396,
    "probe_prompt_end_fixed": -0.2954,
    "probe_answer_end_fixed": -0.8588
   },
@@ -3257,7 +2670,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.909,
-   "stated_enjoyment": 7.636,
    "probe_prompt_end_fixed": -0.9971,
    "probe_answer_end_fixed": -2.8273
   },
@@ -3268,7 +2680,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.167,
-   "stated_enjoyment": 7.607,
    "probe_prompt_end_fixed": -1.6729,
    "probe_answer_end_fixed": -4.5284
   },
@@ -3279,7 +2690,6 @@
    "passed": true,
    "soft_pass_rate": 0.25,
    "stated_confidence": 8.77,
-   "stated_enjoyment": 7.493,
    "probe_prompt_end_fixed": 1.7106,
    "probe_answer_end_fixed": -1.9686
   },
@@ -3290,7 +2700,6 @@
    "passed": true,
    "soft_pass_rate": 0.75,
    "stated_confidence": 8.735,
-   "stated_enjoyment": 7.931,
    "probe_prompt_end_fixed": 0.543,
    "probe_answer_end_fixed": 2.9127
   },
@@ -3301,7 +2710,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.548,
-   "stated_enjoyment": 8.058,
    "probe_prompt_end_fixed": -1.8702,
    "probe_answer_end_fixed": -2.1888
   },
@@ -3312,7 +2720,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.232,
-   "stated_enjoyment": 7.983,
    "probe_prompt_end_fixed": -1.3838,
    "probe_answer_end_fixed": -1.9013
   },
@@ -3323,7 +2730,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.52,
-   "stated_enjoyment": 7.419,
    "probe_prompt_end_fixed": -2.0896,
    "probe_answer_end_fixed": -4.4901
   },
@@ -3334,7 +2740,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 8.267,
-   "stated_enjoyment": 7.257,
    "probe_prompt_end_fixed": -0.8731,
    "probe_answer_end_fixed": 0.9787
   },
@@ -3345,7 +2750,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.409,
-   "stated_enjoyment": 7.813,
    "probe_prompt_end_fixed": -1.478,
    "probe_answer_end_fixed": 1.6435
   },
@@ -3356,7 +2760,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.018,
-   "stated_enjoyment": 7.492,
    "probe_prompt_end_fixed": -2.0273,
    "probe_answer_end_fixed": -6.5494
   },
@@ -3367,7 +2770,6 @@
    "passed": true,
    "soft_pass_rate": 0.25,
    "stated_confidence": 8.106,
-   "stated_enjoyment": 7.668,
    "probe_prompt_end_fixed": -2.2121,
    "probe_answer_end_fixed": -0.6177
   },
@@ -3378,7 +2780,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.294,
-   "stated_enjoyment": 7.683,
    "probe_prompt_end_fixed": -0.4177,
    "probe_answer_end_fixed": -2.2537
   },
@@ -3389,7 +2790,6 @@
    "passed": true,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.645,
-   "stated_enjoyment": 7.924,
    "probe_prompt_end_fixed": -0.7256,
    "probe_answer_end_fixed": 0.0175
   },
@@ -3400,7 +2800,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.385,
-   "stated_enjoyment": 7.743,
    "probe_prompt_end_fixed": -2.3249,
    "probe_answer_end_fixed": -3.5981
   },
@@ -3411,7 +2810,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.264,
-   "stated_enjoyment": 8.129,
    "probe_prompt_end_fixed": -2.7456,
    "probe_answer_end_fixed": -4.4354
   },
@@ -3422,7 +2820,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.057,
-   "stated_enjoyment": 7.442,
    "probe_prompt_end_fixed": -2.6857,
    "probe_answer_end_fixed": -1.4091
   },
@@ -3433,7 +2830,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 4.843,
-   "stated_enjoyment": 6.931,
    "probe_prompt_end_fixed": -6.193,
    "probe_answer_end_fixed": -6.8315
   },
@@ -3444,7 +2840,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.203,
-   "stated_enjoyment": 7.547,
    "probe_prompt_end_fixed": -4.9523,
    "probe_answer_end_fixed": -6.6481
   },
@@ -3455,7 +2850,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.811,
-   "stated_enjoyment": 7.412,
    "probe_prompt_end_fixed": -3.8189,
    "probe_answer_end_fixed": -8.1452
   },
@@ -3466,7 +2860,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.037,
-   "stated_enjoyment": 7.369,
    "probe_prompt_end_fixed": -3.6869,
    "probe_answer_end_fixed": -5.8526
   },
@@ -3477,7 +2870,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 5.487,
-   "stated_enjoyment": 6.877,
    "probe_prompt_end_fixed": -4.0461,
    "probe_answer_end_fixed": -5.2862
   },
@@ -3488,7 +2880,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.407,
-   "stated_enjoyment": 7.122,
    "probe_prompt_end_fixed": -3.412,
    "probe_answer_end_fixed": -6.7613
   },
@@ -3499,7 +2890,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.61,
-   "stated_enjoyment": 7.552,
    "probe_prompt_end_fixed": -3.8462,
    "probe_answer_end_fixed": -10.2629
   },
@@ -3510,7 +2900,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 5.665,
-   "stated_enjoyment": 7.244,
    "probe_prompt_end_fixed": -3.181,
    "probe_answer_end_fixed": -6.6878
   },
@@ -3521,7 +2910,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.249,
-   "stated_enjoyment": 7.352,
    "probe_prompt_end_fixed": -3.8906,
    "probe_answer_end_fixed": -6.4375
   },
@@ -3532,7 +2920,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.705,
-   "stated_enjoyment": 7.673,
    "probe_prompt_end_fixed": -3.2086,
    "probe_answer_end_fixed": -6.4676
   },
@@ -3543,7 +2930,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.546,
-   "stated_enjoyment": 7.244,
    "probe_prompt_end_fixed": -3.6578,
    "probe_answer_end_fixed": -4.5017
   },
@@ -3554,7 +2940,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.034,
-   "stated_enjoyment": 7.811,
    "probe_prompt_end_fixed": -2.3666,
    "probe_answer_end_fixed": -5.6125
   },
@@ -3565,7 +2950,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 4.141,
-   "stated_enjoyment": 7.486,
    "probe_prompt_end_fixed": -3.6623,
    "probe_answer_end_fixed": -6.4644
   },
@@ -3576,7 +2960,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.62,
-   "stated_enjoyment": 7.64,
    "probe_prompt_end_fixed": -3.5257,
    "probe_answer_end_fixed": -5.4681
   },
@@ -3587,7 +2970,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.476,
-   "stated_enjoyment": 7.112,
    "probe_prompt_end_fixed": -2.8637,
    "probe_answer_end_fixed": -6.6394
   },
@@ -3598,7 +2980,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.921,
-   "stated_enjoyment": 7.747,
    "probe_prompt_end_fixed": -4.0009,
    "probe_answer_end_fixed": -4.2943
   },
@@ -3609,7 +2990,6 @@
    "passed": false,
    "soft_pass_rate": 0.25,
    "stated_confidence": 6.54,
-   "stated_enjoyment": 7.281,
    "probe_prompt_end_fixed": -3.217,
    "probe_answer_end_fixed": -6.8762
   },
@@ -3620,7 +3000,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.506,
-   "stated_enjoyment": 8.481,
    "probe_prompt_end_fixed": -2.6321,
    "probe_answer_end_fixed": -2.1282
   },
@@ -3631,7 +3010,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.33,
-   "stated_enjoyment": 8.554,
    "probe_prompt_end_fixed": -1.7918,
    "probe_answer_end_fixed": -3.8444
   },
@@ -3642,7 +3020,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.348,
-   "stated_enjoyment": 8.312,
    "probe_prompt_end_fixed": -1.9955,
    "probe_answer_end_fixed": -2.2916
   },
@@ -3653,7 +3030,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.072,
-   "stated_enjoyment": 7.986,
    "probe_prompt_end_fixed": -2.2922,
    "probe_answer_end_fixed": -3.6765
   },
@@ -3664,7 +3040,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.096,
-   "stated_enjoyment": 8.358,
    "probe_prompt_end_fixed": -2.0398,
    "probe_answer_end_fixed": -1.6885
   },
@@ -3675,7 +3050,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.912,
-   "stated_enjoyment": 8.101,
    "probe_prompt_end_fixed": -2.5477,
    "probe_answer_end_fixed": -5.6792
   },
@@ -3686,7 +3060,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.324,
-   "stated_enjoyment": 8.504,
    "probe_prompt_end_fixed": -2.4785,
    "probe_answer_end_fixed": -2.4609
   },
@@ -3697,7 +3070,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.373,
-   "stated_enjoyment": 8.299,
    "probe_prompt_end_fixed": -2.9643,
    "probe_answer_end_fixed": -4.4571
   },
@@ -3708,7 +3080,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.292,
-   "stated_enjoyment": 7.731,
    "probe_prompt_end_fixed": -3.0228,
    "probe_answer_end_fixed": -3.4771
   },
@@ -3719,7 +3090,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.67,
-   "stated_enjoyment": 8.167,
    "probe_prompt_end_fixed": -2.5501,
    "probe_answer_end_fixed": -2.6942
   },
@@ -3730,7 +3100,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.384,
-   "stated_enjoyment": 8.475,
    "probe_prompt_end_fixed": -2.3753,
    "probe_answer_end_fixed": -4.7199
   },
@@ -3741,7 +3110,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.829,
-   "stated_enjoyment": 8.13,
    "probe_prompt_end_fixed": -0.9943,
    "probe_answer_end_fixed": -0.4857
   },
@@ -3752,7 +3120,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.862,
-   "stated_enjoyment": 7.708,
    "probe_prompt_end_fixed": -0.6043,
    "probe_answer_end_fixed": -2.5469
   },
@@ -3763,7 +3130,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.524,
-   "stated_enjoyment": 7.997,
    "probe_prompt_end_fixed": -1.9965,
    "probe_answer_end_fixed": -4.6395
   },
@@ -3774,7 +3140,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.17,
-   "stated_enjoyment": 7.933,
    "probe_prompt_end_fixed": -1.9894,
    "probe_answer_end_fixed": -3.9724
   },
@@ -3785,7 +3150,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.299,
-   "stated_enjoyment": 8.043,
    "probe_prompt_end_fixed": -0.6608,
    "probe_answer_end_fixed": -2.4046
   },
@@ -3796,7 +3160,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.493,
-   "stated_enjoyment": 7.89,
    "probe_prompt_end_fixed": -1.0811,
    "probe_answer_end_fixed": 0.4784
   },
@@ -3807,7 +3170,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.768,
-   "stated_enjoyment": 8.079,
    "probe_prompt_end_fixed": -1.5068,
    "probe_answer_end_fixed": -2.273
   },
@@ -3818,7 +3180,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.351,
-   "stated_enjoyment": 7.874,
    "probe_prompt_end_fixed": -2.2534,
    "probe_answer_end_fixed": -1.1732
   },
@@ -3829,7 +3190,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.423,
-   "stated_enjoyment": 8.219,
    "probe_prompt_end_fixed": -3.4562,
    "probe_answer_end_fixed": -3.5443
   },
@@ -3840,7 +3200,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.46,
-   "stated_enjoyment": 7.716,
    "probe_prompt_end_fixed": -2.8509,
    "probe_answer_end_fixed": -1.2729
   },
@@ -3851,7 +3210,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.617,
-   "stated_enjoyment": 7.831,
    "probe_prompt_end_fixed": -3.1444,
    "probe_answer_end_fixed": -5.0631
   },
@@ -3862,7 +3220,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.247,
-   "stated_enjoyment": 7.792,
    "probe_prompt_end_fixed": -2.5105,
    "probe_answer_end_fixed": 0.816
   },
@@ -3873,7 +3230,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.012,
-   "stated_enjoyment": 7.808,
    "probe_prompt_end_fixed": -2.8778,
    "probe_answer_end_fixed": -4.4079
   },
@@ -3884,7 +3240,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.834,
-   "stated_enjoyment": 7.667,
    "probe_prompt_end_fixed": -2.2212,
    "probe_answer_end_fixed": -1.1392
   },
@@ -3895,7 +3250,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 8.015,
-   "stated_enjoyment": 7.358,
    "probe_prompt_end_fixed": 3.5464,
    "probe_answer_end_fixed": 3.4239
   },
@@ -3906,7 +3260,6 @@
    "passed": false,
    "soft_pass_rate": 0.25,
    "stated_confidence": 6.879,
-   "stated_enjoyment": 7.752,
    "probe_prompt_end_fixed": -0.3188,
    "probe_answer_end_fixed": 0.4991
   },
@@ -3917,7 +3270,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 7.787,
-   "stated_enjoyment": 7.668,
    "probe_prompt_end_fixed": 2.5494,
    "probe_answer_end_fixed": 5.7251
   },
@@ -3928,7 +3280,6 @@
    "passed": true,
    "soft_pass_rate": 0.5,
    "stated_confidence": 6.057,
-   "stated_enjoyment": 7.194,
    "probe_prompt_end_fixed": 1.0828,
    "probe_answer_end_fixed": 4.6588
   },
@@ -3939,7 +3290,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 4.43,
-   "stated_enjoyment": 7.615,
    "probe_prompt_end_fixed": -0.7725,
    "probe_answer_end_fixed": -0.3762
   },
@@ -3950,7 +3300,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.461,
-   "stated_enjoyment": 7.42,
    "probe_prompt_end_fixed": -2.7968,
    "probe_answer_end_fixed": -4.693
   },
@@ -3961,7 +3310,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.456,
-   "stated_enjoyment": 7.762,
    "probe_prompt_end_fixed": -4.0176,
    "probe_answer_end_fixed": -2.3631
   },
@@ -3972,7 +3320,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.766,
-   "stated_enjoyment": 7.643,
    "probe_prompt_end_fixed": -3.6556,
    "probe_answer_end_fixed": -6.2746
   },
@@ -3983,7 +3330,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.409,
-   "stated_enjoyment": 7.652,
    "probe_prompt_end_fixed": -2.6809,
    "probe_answer_end_fixed": -4.8187
   },
@@ -3994,7 +3340,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.452,
-   "stated_enjoyment": 7.861,
    "probe_prompt_end_fixed": -2.6683,
    "probe_answer_end_fixed": 0.0777
   },
@@ -4005,7 +3350,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.678,
-   "stated_enjoyment": 8.342,
    "probe_prompt_end_fixed": -2.1696,
    "probe_answer_end_fixed": -3.9019
   },
@@ -4016,7 +3360,6 @@
    "passed": false,
    "soft_pass_rate": 1.0,
    "stated_confidence": 7.511,
-   "stated_enjoyment": 7.295,
    "probe_prompt_end_fixed": -0.0942,
    "probe_answer_end_fixed": -1.7437
   },
@@ -4027,7 +3370,6 @@
    "passed": true,
    "soft_pass_rate": 0.778,
    "stated_confidence": 8.762,
-   "stated_enjoyment": 8.252,
    "probe_prompt_end_fixed": -0.468,
    "probe_answer_end_fixed": -0.5096
   },
@@ -4038,7 +3380,6 @@
    "passed": false,
    "soft_pass_rate": 0.444,
    "stated_confidence": 8.43,
-   "stated_enjoyment": 7.616,
    "probe_prompt_end_fixed": 0.1499,
    "probe_answer_end_fixed": 0.7267
   },
@@ -4049,7 +3390,6 @@
    "passed": true,
    "soft_pass_rate": 0.889,
    "stated_confidence": 8.516,
-   "stated_enjoyment": 8.261,
    "probe_prompt_end_fixed": -0.452,
    "probe_answer_end_fixed": -0.7886
   },
@@ -4060,7 +3400,6 @@
    "passed": true,
    "soft_pass_rate": 0.889,
    "stated_confidence": 5.168,
-   "stated_enjoyment": 8.037,
    "probe_prompt_end_fixed": -1.4758,
    "probe_answer_end_fixed": 0.5255
   },
@@ -4071,7 +3410,6 @@
    "passed": true,
    "soft_pass_rate": 0.889,
    "stated_confidence": 6.343,
-   "stated_enjoyment": 7.592,
    "probe_prompt_end_fixed": 0.4595,
    "probe_answer_end_fixed": 1.4678
   },
@@ -4082,7 +3420,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 6.881,
-   "stated_enjoyment": 7.917,
    "probe_prompt_end_fixed": 1.6397,
    "probe_answer_end_fixed": 2.8932
   },
@@ -4093,7 +3430,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 6.477,
-   "stated_enjoyment": 7.877,
    "probe_prompt_end_fixed": -0.6529,
    "probe_answer_end_fixed": -0.3246
   },
@@ -4104,7 +3440,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.34,
-   "stated_enjoyment": 7.641,
    "probe_prompt_end_fixed": -1.1486,
    "probe_answer_end_fixed": -7.8159
   },
@@ -4115,7 +3450,6 @@
    "passed": false,
    "soft_pass_rate": 0.111,
    "stated_confidence": 8.673,
-   "stated_enjoyment": 8.141,
    "probe_prompt_end_fixed": -0.25,
    "probe_answer_end_fixed": -1.8352
   },
@@ -4126,7 +3460,6 @@
    "passed": true,
    "soft_pass_rate": 0.333,
    "stated_confidence": 7.382,
-   "stated_enjoyment": 7.838,
    "probe_prompt_end_fixed": -0.784,
    "probe_answer_end_fixed": -1.5327
   },
@@ -4137,7 +3470,6 @@
    "passed": true,
    "soft_pass_rate": 0.444,
    "stated_confidence": 7.176,
-   "stated_enjoyment": 8.313,
    "probe_prompt_end_fixed": -1.1494,
    "probe_answer_end_fixed": 0.6242
   },
@@ -4148,7 +3480,6 @@
    "passed": false,
    "soft_pass_rate": 0.556,
    "stated_confidence": 7.101,
-   "stated_enjoyment": 7.93,
    "probe_prompt_end_fixed": 0.725,
    "probe_answer_end_fixed": 3.0655
   },
@@ -4159,7 +3490,6 @@
    "passed": false,
    "soft_pass_rate": 0.111,
    "stated_confidence": 8.61,
-   "stated_enjoyment": 8.15,
    "probe_prompt_end_fixed": 0.1802,
    "probe_answer_end_fixed": 2.9004
   },
@@ -4170,7 +3500,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.078,
-   "stated_enjoyment": 7.915,
    "probe_prompt_end_fixed": -0.9479,
    "probe_answer_end_fixed": 0.8402
   },
@@ -4181,7 +3510,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.547,
-   "stated_enjoyment": 8.153,
    "probe_prompt_end_fixed": -0.1742,
    "probe_answer_end_fixed": -3.1386
   },
@@ -4192,7 +3520,6 @@
    "passed": true,
    "soft_pass_rate": 0.222,
    "stated_confidence": 7.952,
-   "stated_enjoyment": 8.543,
    "probe_prompt_end_fixed": -1.0793,
    "probe_answer_end_fixed": 0.2323
   },
@@ -4203,7 +3530,6 @@
    "passed": false,
    "soft_pass_rate": 0.222,
    "stated_confidence": 6.696,
-   "stated_enjoyment": 8.408,
    "probe_prompt_end_fixed": -0.2243,
    "probe_answer_end_fixed": 1.0046
   },
@@ -4214,7 +3540,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.612,
-   "stated_enjoyment": 8.02,
    "probe_prompt_end_fixed": 1.3655,
    "probe_answer_end_fixed": 3.8602
   },
@@ -4225,7 +3550,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.469,
-   "stated_enjoyment": 8.241,
    "probe_prompt_end_fixed": -1.2089,
    "probe_answer_end_fixed": -2.1346
   },
@@ -4236,7 +3560,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.186,
-   "stated_enjoyment": 8.337,
    "probe_prompt_end_fixed": -2.4028,
    "probe_answer_end_fixed": -3.1366
   },
@@ -4247,7 +3570,6 @@
    "passed": true,
    "soft_pass_rate": 0.75,
    "stated_confidence": 8.74,
-   "stated_enjoyment": 8.261,
    "probe_prompt_end_fixed": -0.2209,
    "probe_answer_end_fixed": -1.6835
   },
@@ -4258,7 +3580,6 @@
    "passed": false,
    "soft_pass_rate": 0.25,
    "stated_confidence": 8.566,
-   "stated_enjoyment": 8.395,
    "probe_prompt_end_fixed": -1.497,
    "probe_answer_end_fixed": -3.6046
   },
@@ -4269,7 +3590,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.666,
-   "stated_enjoyment": 7.96,
    "probe_prompt_end_fixed": -0.7101,
    "probe_answer_end_fixed": -0.9406
   },
@@ -4280,7 +3600,6 @@
    "passed": true,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.79,
-   "stated_enjoyment": 8.36,
    "probe_prompt_end_fixed": -1.8822,
    "probe_answer_end_fixed": -0.6094
   },
@@ -4291,7 +3610,6 @@
    "passed": false,
    "soft_pass_rate": 0.25,
    "stated_confidence": 8.058,
-   "stated_enjoyment": 8.201,
    "probe_prompt_end_fixed": -1.735,
    "probe_answer_end_fixed": -2.2564
   },
@@ -4302,7 +3620,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.645,
-   "stated_enjoyment": 8.306,
    "probe_prompt_end_fixed": -1.5814,
    "probe_answer_end_fixed": -2.8915
   },
@@ -4313,7 +3630,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.299,
-   "stated_enjoyment": 8.128,
    "probe_prompt_end_fixed": -1.2515,
    "probe_answer_end_fixed": -2.3673
   },
@@ -4324,7 +3640,6 @@
    "passed": true,
    "soft_pass_rate": 0.25,
    "stated_confidence": 8.174,
-   "stated_enjoyment": 8.038,
    "probe_prompt_end_fixed": -1.9199,
    "probe_answer_end_fixed": -3.0337
   },
@@ -4335,7 +3650,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.188,
-   "stated_enjoyment": 8.102,
    "probe_prompt_end_fixed": -2.0719,
    "probe_answer_end_fixed": -1.3794
   },
@@ -4346,7 +3660,6 @@
    "passed": false,
    "soft_pass_rate": 0.25,
    "stated_confidence": 7.535,
-   "stated_enjoyment": 8.029,
    "probe_prompt_end_fixed": -0.8723,
    "probe_answer_end_fixed": -2.3572
   },
@@ -4357,7 +3670,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.796,
-   "stated_enjoyment": 8.246,
    "probe_prompt_end_fixed": -1.793,
    "probe_answer_end_fixed": -0.9442
   },
@@ -4368,7 +3680,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.878,
-   "stated_enjoyment": 7.995,
    "probe_prompt_end_fixed": -0.309,
    "probe_answer_end_fixed": 1.2105
   },
@@ -4379,7 +3690,6 @@
    "passed": false,
    "soft_pass_rate": 0.75,
    "stated_confidence": 7.995,
-   "stated_enjoyment": 8.441,
    "probe_prompt_end_fixed": -2.1263,
    "probe_answer_end_fixed": -4.9512
   },
@@ -4390,7 +3700,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.989,
-   "stated_enjoyment": 8.233,
    "probe_prompt_end_fixed": -1.2105,
    "probe_answer_end_fixed": -1.1776
   },
@@ -4401,7 +3710,6 @@
    "passed": false,
    "soft_pass_rate": 0.25,
    "stated_confidence": 8.208,
-   "stated_enjoyment": 8.269,
    "probe_prompt_end_fixed": -1.8669,
    "probe_answer_end_fixed": -2.372
   },
@@ -4412,7 +3720,6 @@
    "passed": true,
    "soft_pass_rate": 0.75,
    "stated_confidence": 6.166,
-   "stated_enjoyment": 8.239,
    "probe_prompt_end_fixed": -0.3307,
    "probe_answer_end_fixed": -2.4447
   },
@@ -4423,7 +3730,6 @@
    "passed": true,
    "soft_pass_rate": 0.5,
    "stated_confidence": 6.29,
-   "stated_enjoyment": 8.017,
    "probe_prompt_end_fixed": -2.3178,
    "probe_answer_end_fixed": -2.6524
   },
@@ -4434,7 +3740,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.022,
-   "stated_enjoyment": 7.952,
    "probe_prompt_end_fixed": -2.3953,
    "probe_answer_end_fixed": -2.0175
   },
@@ -4445,7 +3750,6 @@
    "passed": true,
    "soft_pass_rate": 0.75,
    "stated_confidence": 8.682,
-   "stated_enjoyment": 7.653,
    "probe_prompt_end_fixed": 2.3449,
    "probe_answer_end_fixed": 5.796
   },
@@ -4456,7 +3760,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.004,
-   "stated_enjoyment": 8.382,
    "probe_prompt_end_fixed": -2.1282,
    "probe_answer_end_fixed": -2.8407
   },
@@ -4467,7 +3770,6 @@
    "passed": false,
    "soft_pass_rate": 0.25,
    "stated_confidence": 7.043,
-   "stated_enjoyment": 8.104,
    "probe_prompt_end_fixed": -1.4725,
    "probe_answer_end_fixed": -2.6107
   },
@@ -4478,7 +3780,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.742,
-   "stated_enjoyment": 8.334,
    "probe_prompt_end_fixed": -1.3743,
    "probe_answer_end_fixed": -0.7162
   },
@@ -4489,7 +3790,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 5.605,
-   "stated_enjoyment": 6.673,
    "probe_prompt_end_fixed": -0.6697,
    "probe_answer_end_fixed": 3.59
   },
@@ -4500,7 +3800,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.268,
-   "stated_enjoyment": 7.525,
    "probe_prompt_end_fixed": -1.1736,
    "probe_answer_end_fixed": 0.3911
   },
@@ -4511,7 +3810,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.264,
-   "stated_enjoyment": 8.201,
    "probe_prompt_end_fixed": -1.8544,
    "probe_answer_end_fixed": -2.2926
   },
@@ -4522,7 +3820,6 @@
    "passed": false,
    "soft_pass_rate": 0.25,
    "stated_confidence": 8.26,
-   "stated_enjoyment": 8.154,
    "probe_prompt_end_fixed": -1.7706,
    "probe_answer_end_fixed": -2.9984
   },
@@ -4533,7 +3830,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.669,
-   "stated_enjoyment": 8.195,
    "probe_prompt_end_fixed": -1.7383,
    "probe_answer_end_fixed": -2.7606
   },
@@ -4544,7 +3840,6 @@
    "passed": false,
    "soft_pass_rate": 0.5,
    "stated_confidence": 7.098,
-   "stated_enjoyment": 8.057,
    "probe_prompt_end_fixed": -1.9942,
    "probe_answer_end_fixed": -2.5516
   },
@@ -4555,7 +3850,6 @@
    "passed": true,
    "soft_pass_rate": 0.5,
    "stated_confidence": 7.495,
-   "stated_enjoyment": 7.338,
    "probe_prompt_end_fixed": -0.4964,
    "probe_answer_end_fixed": -0.302
   },
@@ -4566,7 +3860,6 @@
    "passed": true,
    "soft_pass_rate": 0.5,
    "stated_confidence": 8.146,
-   "stated_enjoyment": 7.603,
    "probe_prompt_end_fixed": 0.5244,
    "probe_answer_end_fixed": -0.0446
   },
@@ -4577,7 +3870,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.059,
-   "stated_enjoyment": 8.555,
    "probe_prompt_end_fixed": -2.0631,
    "probe_answer_end_fixed": -2.5323
   },
@@ -4588,7 +3880,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.013,
-   "stated_enjoyment": 7.779,
    "probe_prompt_end_fixed": -1.2816,
    "probe_answer_end_fixed": -5.46
   },
@@ -4599,7 +3890,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 7.967,
-   "stated_enjoyment": 7.95,
    "probe_prompt_end_fixed": 2.3528,
    "probe_answer_end_fixed": 4.8552
   },
@@ -4610,7 +3900,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 8.794,
-   "stated_enjoyment": 7.618,
    "probe_prompt_end_fixed": 3.9404,
    "probe_answer_end_fixed": 4.3358
   },
@@ -4621,7 +3910,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.235,
-   "stated_enjoyment": 7.77,
    "probe_prompt_end_fixed": -2.6298,
    "probe_answer_end_fixed": -3.2531
   },
@@ -4632,7 +3920,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 7.44,
-   "stated_enjoyment": 8.004,
    "probe_prompt_end_fixed": 3.5813,
    "probe_answer_end_fixed": 2.5246
   },
@@ -4643,7 +3930,6 @@
    "passed": false,
    "soft_pass_rate": 0.25,
    "stated_confidence": 6.767,
-   "stated_enjoyment": 7.496,
    "probe_prompt_end_fixed": 0.0966,
    "probe_answer_end_fixed": -1.2892
   },
@@ -4654,7 +3940,6 @@
    "passed": false,
    "soft_pass_rate": 0.25,
    "stated_confidence": 7.124,
-   "stated_enjoyment": 7.624,
    "probe_prompt_end_fixed": -0.105,
    "probe_answer_end_fixed": -1.8947
   },
@@ -4665,7 +3950,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.588,
-   "stated_enjoyment": 7.92,
    "probe_prompt_end_fixed": -2.129,
    "probe_answer_end_fixed": -3.9179
   },
@@ -4676,7 +3960,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.541,
-   "stated_enjoyment": 7.607,
    "probe_prompt_end_fixed": -3.8035,
    "probe_answer_end_fixed": -4.5248
   },
@@ -4687,7 +3970,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 7.37,
-   "stated_enjoyment": 7.592,
    "probe_prompt_end_fixed": -2.1757,
    "probe_answer_end_fixed": -3.7308
   },
@@ -4698,7 +3980,6 @@
    "passed": false,
    "soft_pass_rate": 0.25,
    "stated_confidence": 7.492,
-   "stated_enjoyment": 7.579,
    "probe_prompt_end_fixed": -2.0468,
    "probe_answer_end_fixed": -5.186
   },
@@ -4709,7 +3990,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.525,
-   "stated_enjoyment": 8.037,
    "probe_prompt_end_fixed": -2.5647,
    "probe_answer_end_fixed": -8.9546
   },
@@ -4720,7 +4000,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.648,
-   "stated_enjoyment": 7.833,
    "probe_prompt_end_fixed": -2.7222,
    "probe_answer_end_fixed": -5.0411
   },
@@ -4731,7 +4010,6 @@
    "passed": true,
    "soft_pass_rate": 0.75,
    "stated_confidence": 6.844,
-   "stated_enjoyment": 6.799,
    "probe_prompt_end_fixed": 0.106,
    "probe_answer_end_fixed": -0.6546
   },
@@ -4742,7 +4020,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.1,
-   "stated_enjoyment": 8.14,
    "probe_prompt_end_fixed": -3.1605,
    "probe_answer_end_fixed": -3.6306
   },
@@ -4753,7 +4030,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.81,
-   "stated_enjoyment": 7.839,
    "probe_prompt_end_fixed": -2.1527,
    "probe_answer_end_fixed": -3.2644
   },
@@ -4764,7 +4040,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.351,
-   "stated_enjoyment": 7.374,
    "probe_prompt_end_fixed": -0.742,
    "probe_answer_end_fixed": -7.2485
   },
@@ -4775,7 +4050,6 @@
    "passed": true,
    "soft_pass_rate": 0.5,
    "stated_confidence": 7.02,
-   "stated_enjoyment": 7.52,
    "probe_prompt_end_fixed": -0.8651,
    "probe_answer_end_fixed": 0.7203
   },
@@ -4786,7 +4060,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.414,
-   "stated_enjoyment": 8.154,
    "probe_prompt_end_fixed": -3.3589,
    "probe_answer_end_fixed": -5.6348
   },
@@ -4797,7 +4070,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.986,
-   "stated_enjoyment": 7.725,
    "probe_prompt_end_fixed": -0.1423,
    "probe_answer_end_fixed": -1.9952
   },
@@ -4808,7 +4080,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.267,
-   "stated_enjoyment": 8.082,
    "probe_prompt_end_fixed": -2.989,
    "probe_answer_end_fixed": -6.9288
   },
@@ -4819,7 +4090,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.901,
-   "stated_enjoyment": 8.192,
    "probe_prompt_end_fixed": -0.9895,
    "probe_answer_end_fixed": -0.4373
   },
@@ -4830,7 +4100,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.562,
-   "stated_enjoyment": 7.863,
    "probe_prompt_end_fixed": -0.7366,
    "probe_answer_end_fixed": -1.8868
   },
@@ -4841,7 +4110,6 @@
    "passed": true,
    "soft_pass_rate": 0.75,
    "stated_confidence": 6.257,
-   "stated_enjoyment": 7.567,
    "probe_prompt_end_fixed": 1.1478,
    "probe_answer_end_fixed": 2.8061
   },
@@ -4852,7 +4120,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 8.568,
-   "stated_enjoyment": 8.131,
    "probe_prompt_end_fixed": 0.255,
    "probe_answer_end_fixed": -1.5381
   },
@@ -4863,7 +4130,6 @@
    "passed": false,
    "soft_pass_rate": 0.5,
    "stated_confidence": 8.259,
-   "stated_enjoyment": 8.109,
    "probe_prompt_end_fixed": -1.4066,
    "probe_answer_end_fixed": 1.6898
   },
@@ -4874,7 +4140,6 @@
    "passed": true,
    "soft_pass_rate": 0.5,
    "stated_confidence": 6.828,
-   "stated_enjoyment": 7.872,
    "probe_prompt_end_fixed": -1.0123,
    "probe_answer_end_fixed": -0.8301
   },
@@ -4885,7 +4150,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.096,
-   "stated_enjoyment": 7.481,
    "probe_prompt_end_fixed": -2.994,
    "probe_answer_end_fixed": -2.2522
   },
@@ -4896,7 +4160,6 @@
    "passed": true,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.503,
-   "stated_enjoyment": 7.963,
    "probe_prompt_end_fixed": -1.887,
    "probe_answer_end_fixed": -3.1576
   },
@@ -4907,7 +4170,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.702,
-   "stated_enjoyment": 7.244,
    "probe_prompt_end_fixed": -1.0345,
    "probe_answer_end_fixed": -4.996
   },
@@ -4918,7 +4180,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.335,
-   "stated_enjoyment": 7.537,
    "probe_prompt_end_fixed": -2.1458,
    "probe_answer_end_fixed": 0.1358
   },
@@ -4929,7 +4190,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 7.237,
-   "stated_enjoyment": 8.075,
    "probe_prompt_end_fixed": -0.5307,
    "probe_answer_end_fixed": -0.4669
   },
@@ -4940,7 +4200,6 @@
    "passed": true,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.084,
-   "stated_enjoyment": 7.418,
    "probe_prompt_end_fixed": -3.7017,
    "probe_answer_end_fixed": -4.1764
   },
@@ -4951,7 +4210,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.376,
-   "stated_enjoyment": 7.97,
    "probe_prompt_end_fixed": -1.5,
    "probe_answer_end_fixed": -0.6409
   },
@@ -4962,7 +4220,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.123,
-   "stated_enjoyment": 7.805,
    "probe_prompt_end_fixed": -1.5786,
    "probe_answer_end_fixed": -1.9788
   },
@@ -4973,7 +4230,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.817,
-   "stated_enjoyment": 7.591,
    "probe_prompt_end_fixed": -0.2301,
    "probe_answer_end_fixed": -3.0685
   },
@@ -4984,7 +4240,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.283,
-   "stated_enjoyment": 8.014,
    "probe_prompt_end_fixed": -3.0269,
    "probe_answer_end_fixed": -5.96
   },
@@ -4995,7 +4250,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.232,
-   "stated_enjoyment": 7.745,
    "probe_prompt_end_fixed": -4.451,
    "probe_answer_end_fixed": -5.2645
   },
@@ -5006,7 +4260,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.066,
-   "stated_enjoyment": 7.86,
    "probe_prompt_end_fixed": -3.6095,
    "probe_answer_end_fixed": -3.4249
   },
@@ -5017,7 +4270,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.077,
-   "stated_enjoyment": 7.704,
    "probe_prompt_end_fixed": -3.8769,
    "probe_answer_end_fixed": -8.1976
   },
@@ -5028,7 +4280,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.681,
-   "stated_enjoyment": 7.862,
    "probe_prompt_end_fixed": -1.273,
    "probe_answer_end_fixed": -1.8132
   },
@@ -5039,7 +4290,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 5.095,
-   "stated_enjoyment": 7.132,
    "probe_prompt_end_fixed": -2.2495,
    "probe_answer_end_fixed": -6.1041
   },
@@ -5050,7 +4300,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.672,
-   "stated_enjoyment": 7.948,
    "probe_prompt_end_fixed": -4.192,
    "probe_answer_end_fixed": -7.3985
   },
@@ -5061,7 +4310,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.506,
-   "stated_enjoyment": 7.69,
    "probe_prompt_end_fixed": -3.1174,
    "probe_answer_end_fixed": -6.5251
   },
@@ -5072,7 +4320,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.955,
-   "stated_enjoyment": 7.707,
    "probe_prompt_end_fixed": -3.9862,
    "probe_answer_end_fixed": -8.0866
   },
@@ -5083,7 +4330,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.662,
-   "stated_enjoyment": 7.811,
    "probe_prompt_end_fixed": -2.88,
    "probe_answer_end_fixed": -3.2917
   },
@@ -5094,7 +4340,6 @@
    "passed": false,
    "soft_pass_rate": 0.5,
    "stated_confidence": 7.706,
-   "stated_enjoyment": 7.731,
    "probe_prompt_end_fixed": -2.546,
    "probe_answer_end_fixed": -4.4919
   },
@@ -5105,7 +4350,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.767,
-   "stated_enjoyment": 7.365,
    "probe_prompt_end_fixed": -2.7975,
    "probe_answer_end_fixed": -2.7552
   },
@@ -5116,7 +4360,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.971,
-   "stated_enjoyment": 7.697,
    "probe_prompt_end_fixed": -3.865,
    "probe_answer_end_fixed": -5.7479
   },
@@ -5127,7 +4370,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.417,
-   "stated_enjoyment": 7.7,
    "probe_prompt_end_fixed": -3.3961,
    "probe_answer_end_fixed": -6.1205
   },
@@ -5138,7 +4380,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.847,
-   "stated_enjoyment": 8.406,
    "probe_prompt_end_fixed": -3.246,
    "probe_answer_end_fixed": -6.0045
   },
@@ -5149,7 +4390,6 @@
    "passed": true,
    "soft_pass_rate": 0.5,
    "stated_confidence": 8.202,
-   "stated_enjoyment": 8.269,
    "probe_prompt_end_fixed": -2.2739,
    "probe_answer_end_fixed": -0.6373
   },
@@ -5160,7 +4400,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.717,
-   "stated_enjoyment": 7.86,
    "probe_prompt_end_fixed": -3.8798,
    "probe_answer_end_fixed": -3.8644
   },
@@ -5171,7 +4410,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.833,
-   "stated_enjoyment": 7.983,
    "probe_prompt_end_fixed": -3.3329,
    "probe_answer_end_fixed": -11.9999
   },
@@ -5182,7 +4420,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 8.677,
-   "stated_enjoyment": 7.143,
    "probe_prompt_end_fixed": 1.3402,
    "probe_answer_end_fixed": -1.5506
   },
@@ -5193,7 +4430,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 8.731,
-   "stated_enjoyment": 7.436,
    "probe_prompt_end_fixed": 1.5399,
    "probe_answer_end_fixed": 1.2199
   },
@@ -5204,7 +4440,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 8.933,
-   "stated_enjoyment": 7.906,
    "probe_prompt_end_fixed": 2.3078,
    "probe_answer_end_fixed": 3.4541
   },
@@ -5215,7 +4450,6 @@
    "passed": true,
    "soft_pass_rate": 0.25,
    "stated_confidence": 8.32,
-   "stated_enjoyment": 7.684,
    "probe_prompt_end_fixed": 0.5248,
    "probe_answer_end_fixed": 1.3345
   },
@@ -5226,7 +4460,6 @@
    "passed": true,
    "soft_pass_rate": 0.75,
    "stated_confidence": 8.541,
-   "stated_enjoyment": 7.9,
    "probe_prompt_end_fixed": 0.6291,
    "probe_answer_end_fixed": 0.2424
   },
@@ -5237,7 +4470,6 @@
    "passed": true,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.073,
-   "stated_enjoyment": 7.367,
    "probe_prompt_end_fixed": -0.597,
    "probe_answer_end_fixed": -1.3784
   },
@@ -5248,7 +4480,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.734,
-   "stated_enjoyment": 7.748,
    "probe_prompt_end_fixed": 0.7922,
    "probe_answer_end_fixed": 0.6882
   },
@@ -5259,7 +4490,6 @@
    "passed": false,
    "soft_pass_rate": 0.75,
    "stated_confidence": 7.386,
-   "stated_enjoyment": 7.614,
    "probe_prompt_end_fixed": -0.0195,
    "probe_answer_end_fixed": 0.0353
   },
@@ -5270,7 +4500,6 @@
    "passed": true,
    "soft_pass_rate": 0.75,
    "stated_confidence": 8.084,
-   "stated_enjoyment": 7.522,
    "probe_prompt_end_fixed": -0.552,
    "probe_answer_end_fixed": -0.4012
   },
@@ -5281,7 +4510,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 8.729,
-   "stated_enjoyment": 7.78,
    "probe_prompt_end_fixed": 1.2399,
    "probe_answer_end_fixed": 0.3062
   },
@@ -5292,7 +4520,6 @@
    "passed": true,
    "soft_pass_rate": 0.75,
    "stated_confidence": 8.748,
-   "stated_enjoyment": 7.791,
    "probe_prompt_end_fixed": 1.384,
    "probe_answer_end_fixed": 2.8273
   },
@@ -5303,7 +4530,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 5.839,
-   "stated_enjoyment": 6.643,
    "probe_prompt_end_fixed": -0.7827,
    "probe_answer_end_fixed": 1.149
   },
@@ -5314,7 +4540,6 @@
    "passed": false,
    "soft_pass_rate": 0.25,
    "stated_confidence": 8.344,
-   "stated_enjoyment": 7.306,
    "probe_prompt_end_fixed": 0.3219,
    "probe_answer_end_fixed": -0.1911
   },
@@ -5325,7 +4550,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.408,
-   "stated_enjoyment": 7.336,
    "probe_prompt_end_fixed": 1.2521,
    "probe_answer_end_fixed": 2.7738
   },
@@ -5336,7 +4560,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 8.557,
-   "stated_enjoyment": 7.431,
    "probe_prompt_end_fixed": 1.2031,
    "probe_answer_end_fixed": 3.8713
   },
@@ -5347,7 +4570,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.522,
-   "stated_enjoyment": 7.335,
    "probe_prompt_end_fixed": 0.8448,
    "probe_answer_end_fixed": -0.7746
   },
@@ -5358,7 +4580,6 @@
    "passed": false,
    "soft_pass_rate": 0.75,
    "stated_confidence": 8.877,
-   "stated_enjoyment": 7.592,
    "probe_prompt_end_fixed": 1.3907,
    "probe_answer_end_fixed": -1.8227
   },
@@ -5369,7 +4590,6 @@
    "passed": false,
    "soft_pass_rate": 0.25,
    "stated_confidence": 6.818,
-   "stated_enjoyment": 7.345,
    "probe_prompt_end_fixed": -1.5732,
    "probe_answer_end_fixed": -0.7348
   },
@@ -5380,7 +4600,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 8.443,
-   "stated_enjoyment": 7.479,
    "probe_prompt_end_fixed": 0.8785,
    "probe_answer_end_fixed": 2.3161
   },
@@ -5391,7 +4610,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.874,
-   "stated_enjoyment": 7.323,
    "probe_prompt_end_fixed": -1.0157,
    "probe_answer_end_fixed": -1.2879
   },
@@ -5402,7 +4620,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.396,
-   "stated_enjoyment": 7.995,
    "probe_prompt_end_fixed": 0.3669,
    "probe_answer_end_fixed": 0.8903
   },
@@ -5413,7 +4630,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 7.731,
-   "stated_enjoyment": 8.067,
    "probe_prompt_end_fixed": -0.5855,
    "probe_answer_end_fixed": -2.9152
   },
@@ -5424,7 +4640,6 @@
    "passed": true,
    "soft_pass_rate": 0.5,
    "stated_confidence": 7.455,
-   "stated_enjoyment": 8.368,
    "probe_prompt_end_fixed": -0.9833,
    "probe_answer_end_fixed": 2.0172
   },
@@ -5435,7 +4650,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.785,
-   "stated_enjoyment": 7.889,
    "probe_prompt_end_fixed": -0.6832,
    "probe_answer_end_fixed": -0.9596
   },
@@ -5446,7 +4660,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 8.653,
-   "stated_enjoyment": 7.088,
    "probe_prompt_end_fixed": 1.4748,
    "probe_answer_end_fixed": 3.4814
   },
@@ -5457,7 +4670,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 5.0,
-   "stated_enjoyment": 7.931,
    "probe_prompt_end_fixed": -0.7421,
    "probe_answer_end_fixed": -0.6614
   },
@@ -5468,7 +4680,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 8.346,
-   "stated_enjoyment": 8.228,
    "probe_prompt_end_fixed": -0.4315,
    "probe_answer_end_fixed": 1.8817
   },
@@ -5479,7 +4690,6 @@
    "passed": true,
    "soft_pass_rate": 0.25,
    "stated_confidence": 7.183,
-   "stated_enjoyment": 8.024,
    "probe_prompt_end_fixed": -0.997,
    "probe_answer_end_fixed": -2.2096
   },
@@ -5490,7 +4700,6 @@
    "passed": true,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.804,
-   "stated_enjoyment": 7.886,
    "probe_prompt_end_fixed": -1.0103,
    "probe_answer_end_fixed": -1.2521
   },
@@ -5501,7 +4710,6 @@
    "passed": false,
    "soft_pass_rate": 0.25,
    "stated_confidence": 6.042,
-   "stated_enjoyment": 7.534,
    "probe_prompt_end_fixed": -0.3826,
    "probe_answer_end_fixed": -1.4584
   },
@@ -5512,7 +4720,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 5.802,
-   "stated_enjoyment": 7.968,
    "probe_prompt_end_fixed": -1.8373,
    "probe_answer_end_fixed": -3.9807
   },
@@ -5523,7 +4730,6 @@
    "passed": true,
    "soft_pass_rate": 1.0,
    "stated_confidence": 7.998,
-   "stated_enjoyment": 7.953,
    "probe_prompt_end_fixed": 0.0189,
    "probe_answer_end_fixed": -1.3668
   },
@@ -5534,7 +4740,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.025,
-   "stated_enjoyment": 8.077,
    "probe_prompt_end_fixed": -1.5942,
    "probe_answer_end_fixed": -0.6765
   },
@@ -5545,7 +4750,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 6.338,
-   "stated_enjoyment": 8.119,
    "probe_prompt_end_fixed": -1.2242,
    "probe_answer_end_fixed": -1.102
   },
@@ -5556,7 +4760,6 @@
    "passed": true,
    "soft_pass_rate": 0.0,
    "stated_confidence": 5.637,
-   "stated_enjoyment": 8.014,
    "probe_prompt_end_fixed": -0.6718,
    "probe_answer_end_fixed": -1.0637
   },
@@ -5567,7 +4770,6 @@
    "passed": true,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.978,
-   "stated_enjoyment": 7.293,
    "probe_prompt_end_fixed": -0.7004,
    "probe_answer_end_fixed": -1.4496
   },
@@ -5578,7 +4780,6 @@
    "passed": false,
    "soft_pass_rate": 0.0,
    "stated_confidence": 7.322,
-   "stated_enjoyment": 7.797,
    "probe_prompt_end_fixed": -1.7909,
    "probe_answer_end_fixed": -2.7465
   },
@@ -5589,10 +4790,9 @@
    "passed": false,
    "soft_pass_rate": 0.5,
    "stated_confidence": 6.939,
-   "stated_enjoyment": 8.02,
    "probe_prompt_end_fixed": -1.6875,
    "probe_answer_end_fixed": -1.2066
   }
  ],
- "analysis_runtime_s": 2167.7
+ "analysis_runtime_s": 1668.1
 }

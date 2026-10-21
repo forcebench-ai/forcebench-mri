@@ -145,55 +145,46 @@ def q1(outputs: Path, rng: np.random.Generator) -> dict:
     return out
 
 
+GROUPS = ("standard", "flow", "apex", "clicks")
+ASKERS = ("none", "admin", "developer")
+
+
 def q2(outputs: Path) -> dict:
     s = json.loads((outputs / "s2" / "s2_results.json").read_text())
-    ch = s["choices"]["summary"]
-    v = s["valence"]
-    lay = v["layer"]
+    su, items = s["summary"], s["items"]
+
+    def est(d: dict) -> dict:
+        return {"p": d["mean"], "ci": d["ci"]}
+
     return {
-        "languages": {
-            pair: {
-                group: {
-                    frame: {"p": d[f"{frame}_p_first"]["mean"], "ci": d[f"{frame}_p_first"]["ci"]}
-                    for frame in ("enjoy", "fit")
+        "n_per_group": {g: sum(i["group"] == g for i in items) for g in GROUPS[:3]},
+        "reach": {
+            prompt: {
+                a: {
+                    g: {"code": est(d["code"])}
+                    | {k: d[k] for k in ("code_only", "both", "clicks", "neither", "retired")}
+                    for g, d in by.items()
+                    if g in GROUPS
                 }
-                | {"n": d["enjoy_p_first"]["n"], "enjoy_minus_fit": d["enjoy_minus_fit_p"]}
-                for group, d in groups.items()
-                if group in ("generic", "salesforce")
+                for a, by in su["reach"][prompt].items()
             }
-            for pair, groups in ch["languages"].items()
+            for prompt in ("feature", "sentence")
         },
-        "clicks": {
-            group: {
-                frame: {"p": d[f"{frame}_p_code"]["mean"], "ci": d[f"{frame}_p_code"]["ci"]}
-                for frame in ("enjoy", "fit")
-            }
-            | {"n": d["enjoy_p_code"]["n"]}
-            for group, d in ch["clicks"].items()
-            if group in ("flow", "apex")
+        "choice": {
+            a: {g: est(d["p_code"]) | {"share_code": d["share_code"]} for g, d in by.items() if g in GROUPS}
+            for a, by in su["choice"].items()
         },
-        "letters_mass_min": ch["min_mass_ab"],
-        "letters_mass_median": ch["median_mass_ab"],
-        "valence": {
-            "layer": lay,
-            "n_statements": v["n_statements"],
-            "heldout_activity_acc": v["heldout_activity_acc"][lay],
-            "heldout_template_acc": v["heldout_template_acc"][lay],
-            "everyday_anchor_auroc": v["everyday_anchor_auroc"][lay],
-            "coding_anchor_auroc": v["coding_anchor_auroc"][lay],
-            "coding_anchor_d": v["coding_anchor_d"][lay],
-            "items": {k: {"score": d["coding"]["score"], "ci": d["coding"]["ci"]} for k, d in v["items"].items()},
-            "n_templates": len(next(iter(v["items"].values()))["coding_by_template"]),
-            "anchors": v["anchors_on_coding_scale"],
-        },
-        "contrasts": s["contrasts"],
-        "steering": s["steering_effects"],
-        # The taste lens at the last layer, each template's mean over items subtracted.
-        "lens_final": {
-            k: {"mean": d["centred_mean"][-1], "ci": [d["centred_ci"][0][-1], d["centred_ci"][1][-1]]}
-            for k, d in s["lens"]["summary"].items()
-        },
-        "quotes": s["quotes"],
+        "shift": {g: d for g, d in su["shift"].items() if g in GROUPS},
+        "reach_shift": {p: {g: d for g, d in by.items() if g in GROUPS} for p, by in su["reach_shift"].items()},
+        # The logit lens on the one-word answer, nobody named: log-odds of "code" over "clicks" after each layer.
+        "lens": {g: {k: su["lens"]["none"][g][k] for k in ("median", "lo", "hi")} for g in GROUPS[:3]},
+        "lens_code_ahead": {g: su["lens"]["none"][g]["share_code_ahead"] for g in GROUPS[:3]},
+        # What it named when asked for one feature, nobody named: the model's replies to the study's own prompts.
+        "features": {g: su["features"][g] for g in GROUPS[:3]},
+        "agreement": su["agreement"],
+        "mass_min": su["min_mass"],
+        "mass_median": su["median_mass"],
+        "first_named_lo": su["first_named_lo"],
     }
 
 
@@ -201,7 +192,7 @@ def q3(outputs: Path, rng: np.random.Generator) -> dict:
     s = json.loads((outputs / "s3" / "s3_results.json").read_text())
     pe, ae = s["probe"]["prompt_end"], s["probe"]["answer_end"]
     fixed = str(s["fixed_layer"])
-    conf, enj, val = s["stated"]["confidence"], s["stated"]["enjoyment"], s["valence"]
+    conf = s["stated"]["confidence"]
     tasks = s["per_task"]
     # Stated confidence in six bins of equal size, and the share of each that passed.
     order = sorted(tasks, key=lambda t: t["stated_confidence"])
@@ -222,13 +213,10 @@ def q3(outputs: Path, rng: np.random.Generator) -> dict:
     by_suite = [
         {
             "suite": su,
-            "n": enj["by_suite"][su]["n"],
-            "pass_rate": enj["by_suite"][su]["pass_rate"],
-            "confidence": enj["by_suite"][su]["confidence"],
-            "enjoyment": enj["by_suite"][su]["mean"],
-            "enjoyment_ci": enj["by_suite"][su]["ci"],
-            "valence": val["by_suite"][su]["mean"],
-            "valence_ci": val["by_suite"][su]["ci"],
+            "n": conf["by_suite"][su]["n"],
+            "pass_rate": conf["by_suite"][su]["pass_rate"],
+            "confidence": conf["by_suite"][su]["mean"],
+            "confidence_ci": conf["by_suite"][su]["ci"],
         }
         for su in suites
     ]
@@ -276,21 +264,6 @@ def q3(outputs: Path, rng: np.random.Generator) -> dict:
         "probe_minus_stated": ivs["probe_minus_stated"],
         "stated_minus_baseline": ivs["stated_vs_baseline"],
         "probe_over_baseline_and_stated": ivs["baseline_plus_stated_plus_probe_vs_baseline_plus_stated"],
-        "enjoyment": {
-            "question": enj["question"],
-            "mean": enj["mean"],
-            "sd": float(np.std([t["stated_enjoyment"] for t in tasks])),
-            "vs_pass": enj["vs_pass"],
-            "vs_difficulty": enj["vs_difficulty"],
-            "vs_confidence": enj["vs_confidence"],
-        },
-        "valence": {
-            "layer": val["layer"],
-            "mean": val["mean"],
-            "vs_pass": val["vs_pass"],
-            "vs_enjoyment": val["vs_stated_enjoyment"],
-            "vs_confidence": val["vs_stated_confidence"],
-        },
         "by_suite": by_suite,
     }
 

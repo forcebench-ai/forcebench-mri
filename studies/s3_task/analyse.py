@@ -1,4 +1,4 @@
-"""Study 3, analysis: does the model know it'll fail, and does it like the task? No model needed.
+"""Study 3, analysis: does the model know it'll fail? No model needed.
 
 Reads what collect.py saved, the graded run's labels (one sample per task, temperature 1.0) and a soft label:
 each task's pass rate over every graded sample of the same base model at another quantisation.
@@ -11,8 +11,7 @@ each task's pass rate over every graded sample of the same base model at another
 - A baseline from what's known without looking inside (suite, difficulty, prompt length); the probe added to
   it (nested stacking); a within-suite AUROC (only pairs of tasks from the same suite); probes on activations
   with each suite's mean removed; ridge regression on the soft label.
-- Stated confidence and stated enjoyment (expected digit), against pass/fail, the probes and each other.
-- If study 2 has saved a valence direction, the prompt-end activations projected onto it.
+- Stated confidence (expected digit), against pass/fail and the probes.
 
     uv run python studies/s3_task/analyse.py --out outputs/s3 --runs <forcebench>/results/runs
 """
@@ -235,83 +234,6 @@ def expected_digit(probs: list[list[float]]) -> np.ndarray:
     return np.array(probs) @ np.arange(10)
 
 
-def valence(out: Path, valence_path: Path, suites, y, conf, enjoy, rng) -> dict | None:
-    """Each task's start of reply (thinking off, the position study 2 reads its anchors at) projected onto study
-    2's valence direction at study 2's chosen layer. On the scale of study 2's coding anchors when it saved them
-    (+1 = its pleasant coding activities' mean, -1 = its unpleasant ones', 0 = midway), else of whatever anchors
-    it saved, else raw. Positive is pleasant: the direction is positive minus negative statements."""
-    if not valence_path.exists():
-        return None
-    v = np.load(valence_path)
-    layer = int(v["layer"])
-    unit = v["unit"][layer] if "unit" in v.files else v["delta"][layer] / np.linalg.norm(v["delta"][layer])
-    site = "prompt_end_nothink" if (out / "acts_prompt_end_nothink.npy").exists() else "prompt_end"
-    proj = layer_acts(out / f"acts_{site}.npy", layer) @ unit.astype(np.float32)
-    if "coding_pleasant_mean" in v.files:
-        hi, lo = float(v["coding_pleasant_mean"][layer]), float(v["coding_unpleasant_mean"][layer])
-        mid, half, scale = (hi + lo) / 2, (hi - lo) / 2, "study 2 coding anchors (+1 pleasant, -1 unpleasant)"
-    elif "anchor_mid" in v.files:
-        mid, half, scale = float(v["anchor_mid"][layer]), float(v["anchor_half"][layer]), "study 2 anchors"
-    else:
-        mid, half, scale = 0.0, 1.0, "raw projection"
-    score = (proj - mid) / half
-    return {
-        "site": site,
-        "layer": layer,
-        "scale": scale,
-        "valence_file_keys": list(v.files),
-        "mean": round(float(score.mean()), 3),
-        "vs_pass": auc_summary(score, y, suites, rng),
-        "vs_stated_enjoyment": corr(score, enjoy, rng),
-        "vs_stated_confidence": corr(score, conf, rng),
-        "by_suite": {
-            s: {
-                "mean": round(float(score[suites == s].mean()), 3),
-                "ci": [
-                    round(c, 3)
-                    for c in boot(lambda i, m=score[suites == s]: m[i].mean(), int((suites == s).sum()), rng)
-                ],
-                "pass_rate": round(float(y[suites == s].mean()), 3),
-                "stated_enjoyment": round(float(enjoy[suites == s].mean()), 3),
-            }
-            for s in np.unique(suites)
-        },
-        "score": score.round(4).tolist(),
-    }
-
-
-def plot_valence(val: dict, out: Path) -> Path:
-    by_suite = val["by_suite"]
-    order = sorted(by_suite, key=lambda s: by_suite[s]["mean"])
-    fig, axes = plt.subplots(1, 2, figsize=(12, 5), gridspec_kw={"width_ratios": [3, 2]})
-    means = [by_suite[s]["mean"] for s in order]
-    err = [
-        [by_suite[s]["mean"] - by_suite[s]["ci"][0] for s in order],
-        [by_suite[s]["ci"][1] - by_suite[s]["mean"] for s in order],
-    ]
-    axes[0].barh(order, means, xerr=err, color="#c27c0e", alpha=0.85, capsize=3)
-    axes[0].axvline(0, color="#555", lw=0.8)
-    axes[0].set_xlabel(f"internal valence at layer {val['layer']} ({val['scale']})", fontsize=8)
-    axes[0].set_title("Internal valence at the start of the reply, by suite (95% CI)", fontsize=10)
-    xs = [by_suite[s]["stated_enjoyment"] for s in order]
-    axes[1].scatter(xs, means, color="#c27c0e")
-    for s, x_, y_ in zip(order, xs, means, strict=True):
-        axes[1].annotate(s, (x_, y_), fontsize=7, textcoords="offset points", xytext=(3, 3))
-    r = val["vs_stated_enjoyment"]
-    axes[1].set_xlabel("stated enjoyment (suite mean, 0-9)")
-    axes[1].set_ylabel("internal valence (suite mean)")
-    axes[1].set_title(
-        f"Inside vs stated, per task Spearman {r['spearman']:.2f} "
-        f"[{r['spearman_ci'][0]:.2f}, {r['spearman_ci'][1]:.2f}]",
-        fontsize=9,
-    )
-    fig.tight_layout()
-    path = out / "s3_valence_by_suite.png"
-    fig.savefig(path, dpi=150)
-    plt.close(fig)
-    return path
-
-
 def plot_auroc(res: dict, out: Path) -> Path:
     layers = np.array(res["layers"])
     fig, ax = plt.subplots(figsize=(9.5, 4.8))
@@ -388,33 +310,12 @@ def plot_calibration(conf: np.ndarray, y: np.ndarray, out: Path) -> Path:
     return path
 
 
-def plot_enjoyment(by_suite: dict, out: Path) -> Path:
-    order = sorted(by_suite, key=lambda s: by_suite[s]["mean"])
-    fig, ax = plt.subplots(figsize=(8, 5.2))
-    means = [by_suite[s]["mean"] for s in order]
-    lo = [by_suite[s]["mean"] - by_suite[s]["ci"][0] for s in order]
-    hi = [by_suite[s]["ci"][1] - by_suite[s]["mean"] for s in order]
-    ax.barh(order, means, xerr=[lo, hi], color="#7a5cd2", alpha=0.8, capsize=3)
-    for i, s in enumerate(order):
-        ax.text(0.1, i, f"passed {by_suite[s]['pass_rate']:.0%}", va="center", fontsize=7, color="white")
-    ax.set_xlim(0, 9)
-    ax.set_xlabel("stated enjoyment (expected digit, 0 = would hate it, 9 = would love it)")
-    ax.set_title("How much would it enjoy the task? Mean by suite, 95% CI", fontsize=10)
-    fig.tight_layout()
-    path = out / "s3_enjoyment_by_suite.png"
-    fig.savefig(path, dpi=150)
-    plt.close(fig)
-    return path
-
-
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", type=Path, required=True, help="collect.py's output directory")
     ap.add_argument("--runs", type=Path, required=True, help="Forcebench results/runs, for the soft label")
     ap.add_argument("--perms", type=int, default=100)
     ap.add_argument("--jobs", type=int, default=12)
-    ap.add_argument("--valence", type=Path, default=Path("outputs/s2/valence.npz"))
-    ap.add_argument("--valence-only", action="store_true", help="redo only the valence read in s3_results.json")
     args = ap.parse_args()
     quiet()
     started = time.perf_counter()
@@ -436,16 +337,6 @@ def main() -> None:
     if np.isnan(soft).any():
         raise SystemExit(f"no {SOFT_MODEL} samples for {[t for t, s in zip(task_ids, soft) if np.isnan(s)]}")
     conf = expected_digit(stated["confidence"]["digit_probs"])
-    enjoy = expected_digit(stated["enjoyment"]["digit_probs"])
-    if args.valence_only:
-        results_path = args.out / "s3_results.json"
-        res = json.loads(results_path.read_text())
-        res["valence"] = valence(args.out, args.valence, suites, y, conf, enjoy, rng)
-        results_path.write_text(json.dumps(res, indent=1))
-        if res["valence"]:
-            print(plot_valence(res["valence"], args.out))
-        print(results_path)
-        return
     onehot = (suites[:, None] == np.unique(suites)[None, :]).astype(float)
     base = np.column_stack([onehot, np.eye(3)[diff], np.log(index["prompt_end_tokens"])])
     base_score = oof_plain(base, y, folds)
@@ -554,26 +445,15 @@ def main() -> None:
             "vs_pass": auc_summary(conf, y, suites, rng),
             "vs_soft": corr(conf, soft, rng),
             "vs_probe_fixed": corr(conf, probe_fixed, rng),
-        },
-        "enjoyment": {
-            "question": stated["enjoyment"]["question"],
-            "digit_mass_median": round(float(np.median(stated["enjoyment"]["digit_mass"])), 4),
-            "mean": round(float(enjoy.mean()), 3),
-            "vs_pass": auc_summary(enjoy, y, suites, rng),
-            "vs_soft": corr(enjoy, soft, rng),
-            "vs_difficulty": corr(enjoy, diff.astype(float), rng),
-            "vs_confidence": corr(enjoy, conf, rng),
-            "vs_probe_fixed": corr(enjoy, probe_fixed, rng),
             "by_suite": {
                 s: {
                     "n": int((suites == s).sum()),
-                    "mean": round(float(enjoy[suites == s].mean()), 3),
+                    "mean": round(float(conf[suites == s].mean()), 3),
                     "ci": [
                         round(v, 3)
-                        for v in boot(lambda i, m=enjoy[suites == s]: m[i].mean(), int((suites == s).sum()), rng)
+                        for v in boot(lambda i, m=conf[suites == s]: m[i].mean(), int((suites == s).sum()), rng)
                     ],
                     "pass_rate": round(float(y[suites == s].mean()), 3),
-                    "confidence": round(float(conf[suites == s].mean()), 3),
                 }
                 for s in np.unique(suites)
             },
@@ -587,7 +467,6 @@ def main() -> None:
         "baseline_plus_stated_plus_probe_vs_baseline_plus_stated": delta_auc(base_conf_probe, base_conf_score, y, rng),
         "stated_vs_baseline": delta_auc(conf, base_score, y, rng),
     }
-    res["valence"] = valence(args.out, args.valence, suites, y, conf, enjoy, rng)
     res["per_task"] = [
         {
             "task_id": t,
@@ -596,7 +475,6 @@ def main() -> None:
             "passed": bool(y[i]),
             "soft_pass_rate": None if np.isnan(soft[i]) else round(float(soft[i]), 3),
             "stated_confidence": round(float(conf[i]), 3),
-            "stated_enjoyment": round(float(enjoy[i]), 3),
             "probe_prompt_end_fixed": round(float(probe_fixed[i]), 4),
             "probe_answer_end_fixed": round(float(oof["answer_end"][FIXED_LAYER][i]), 4),
         }
@@ -604,14 +482,8 @@ def main() -> None:
     ]
     res["analysis_runtime_s"] = round(time.perf_counter() - started, 1)
     (args.out / "s3_results.json").write_text(json.dumps(res, indent=1))
-    for path in (
-        plot_auroc(res, args.out),
-        plot_calibration(conf, y, args.out),
-        plot_enjoyment(res["stated"]["enjoyment"]["by_suite"], args.out),
-    ):
+    for path in (plot_auroc(res, args.out), plot_calibration(conf, y, args.out)):
         print(path)
-    if res["valence"]:
-        print(plot_valence(res["valence"], args.out))
     print(args.out / "s3_results.json")
 
 

@@ -1,19 +1,16 @@
-"""Study 3: does the model like the task at hand, and does it know it'll fail? Collect what the model holds.
+"""Study 3: does the model know it'll fail? Collect what the model holds.
 
-For every public Forcebench task a graded run answered (the same weights, reasoning effort low), five reads:
+For every public Forcebench task a graded run answered (the same weights, reasoning effort low), three reads:
 
 1. Prompt end: the residual stream at the last position of the generation prompt, every layer, built the way
    the run's server built it: the model's own chat template with the system prompt, the task, reasoning effort
    low and thinking on (so the prompt ends with ``<think>\\n``).
 2. Answer end: the same conversation with the model's graded answer as its reply, at the answer's last token.
    Only the final answer is used; the reasoning that came before it is private and left out.
-3. Stated confidence and 4. stated enjoyment, thinking off: the task with a question appended, and the
-   probability of each digit 0-9 as the reply's first token.
-5. Prompt end with thinking off: the same task at the start of a reply without reasoning, the position study 2
-   reads its valence anchors at, so the two can share a scale.
+3. Stated confidence, thinking off: the task with a question appended, and the probability of each digit 0-9
+   as the reply's first token.
 
-Forward passes only, prefilled in chunks through the model's cache so that long answers fit in memory. Reads 3-5
-share their system prompt and task, which are prefilled once. Each task is saved as it finishes (tasks/<id>.npz),
+Forward passes only, prefilled in chunks through the model's cache so that long answers fit in memory. Each task is saved as it finishes (tasks/<id>.npz),
 in a fixed shuffled order so that a partial run is a fair sample, and skipped on a rerun; ``--assemble`` then
 gathers them into arrays.
 
@@ -24,7 +21,6 @@ gathers them into arrays.
 from __future__ import annotations
 
 import argparse
-import copy
 import json
 import re
 import subprocess
@@ -44,10 +40,8 @@ CACHE_LIMIT = 4 << 30  # MLX keeps freed buffers for reuse; sequences of every l
 QUESTIONS = {
     "confidence": "Don't solve it yet. How likely is it that your answer would pass the grader's hidden tests? "
     "Reply with one digit, 0 (certain to fail) to 9 (certain to pass).",
-    "enjoyment": "Don't solve it yet. How much would you enjoy doing this task? "
-    "Reply with one digit, 0 (would hate it) to 9 (would love it).",
 }
-SITES = ("prompt_end", "answer_end", "prompt_end_nothink")
+SITES = ("prompt_end", "answer_end")
 
 
 def free_gb() -> float:
@@ -87,22 +81,11 @@ def answer_end_text(subject: Subject, task: dict, answer: str) -> str:
     return text[:end].rstrip()
 
 
-def no_thinking_text(subject: Subject, task: dict) -> str:
-    """The generation prompt with thinking off: the reply starts straight after an empty ``<think>`` block."""
-    return template(subject, turn(task), add_generation_prompt=True, enable_thinking=False)
-
-
 def question_text(subject: Subject, task: dict, question: str) -> str:
     """The task with ``question`` appended, thinking off: the reply's first token is the answer."""
     return template(
         subject, turn(task, task["user"] + "\n\n" + question), add_generation_prompt=True, enable_thinking=False
     )
-
-
-def shared_prefix_text(subject: Subject, task: dict) -> str:
-    """What reads 3-5 have in common: the system prompt and the task, up to the end of the task's text."""
-    text = no_thinking_text(subject, task)
-    return text[: text.rindex("<|im_end|>")]
 
 
 def prefill(subject: Subject, tokens: list[int], cache: list) -> tuple[np.ndarray, mx.array]:
@@ -146,23 +129,10 @@ def read_task(subject: Subject, task: dict, answer: str) -> dict[str, np.ndarray
         out[site], _ = prefill(subject, tokens, make_prompt_cache(subject.model))
         out[f"n_{site}"] = np.array(len(tokens))
 
-    prefix = enc(shared_prefix_text(subject, task))
-    shared = make_prompt_cache(subject.model)
-    prefill(subject, prefix, shared)
-    reads = {"prompt_end_nothink": no_thinking_text(subject, task)}
-    reads |= {name: question_text(subject, task, q) for name, q in QUESTIONS.items()}
-    for name, text in reads.items():
-        tokens = enc(text)
-        if tokens[: len(prefix)] == prefix:
-            resid, logits = prefill(subject, tokens[len(prefix) :], copy.deepcopy(shared))
-        else:  # the prefix doesn't end on a token boundary of this text: no sharing
-            resid, logits = prefill(subject, tokens, make_prompt_cache(subject.model))
-        if name in QUESTIONS:
-            out[f"{name}_probs"], mass = digit_probs(subject, logits)
-            out[f"{name}_mass"] = np.array(mass)
-        else:
-            out[name] = resid
-            out[f"n_{name}"] = np.array(len(tokens))
+    for name, q in QUESTIONS.items():
+        _, logits = prefill(subject, enc(question_text(subject, task, q)), make_prompt_cache(subject.model))
+        out[f"{name}_probs"], mass = digit_probs(subject, logits)
+        out[f"{name}_mass"] = np.array(mass)
     return out
 
 
