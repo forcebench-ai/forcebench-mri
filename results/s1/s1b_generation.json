@@ -1,0 +1,905 @@
+{
+ "layer": 50,
+ "scale": 1.0,
+ "prompts": [
+  {
+   "id": "test-account-rename",
+   "conditions": {
+    "none": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\n@isTest\nprivate class AccountServiceTest {\n    @isTest\n    static void testRenameAccount() {\n        // Setup\n        Account acc = new Account(Name = 'Original Name');\n        insert acc;\n\n        // Execute\n        AccountService.rename(acc.Id, 'New Name');\n\n        // Verify\n        Account updatedAcc = [SELECT Name FROM Account WHERE Id = :acc.Id];\n        System.assertEquals('New Name', updatedAcc.Name, 'Account name should be updated to New Name');\n    }\n}\n```"
+    },
+    "+apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\n@isTest\nprivate class AccountServiceTest {\n    @isTest\n    private static void testRenameAccount() {\n        // Create a test account\n        Account acc = new Account(Name = 'Old Name');\n        insert acc;\n\n        // Call the method\n        AccountService.rename(acc.Id, 'New Name');\n\n        // Query the account to verify the change\n        Account updatedAcc = [SELECT Name FROM Account WHERE Id = :acc.Id];\n\n        // Assert the new name\n        System.assert(updatedAcc.Name = 'New Name', 'Account name was not updated correctly.');\n    }\n}\n```"
+    },
+    "-apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 1,
+      "@Test": 1,
+      "@Override": 0,
+      "import": 2,
+      "int": 0,
+      "double-quoted string": 2,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```java\nimport org.junit.jupiter.api.Test;\nimport static org.junit.jupiter.api.Assertions.*;\n\npublic class AccountServiceTest {\n\n    @Test\n    public void testRenameAccount() {\n        // Arrange\n        AccountService service = new AccountService();\n        String newName = \"Renamed Account\";\n        Id accountId = createTestAccount();\n\n        // Act\n        service.rename(accountId, newName);\n\n        // Assert\n        Account updatedAccount = AccountService.getAccount(accountId);\n        assertEquals(newName, updatedAccount.getName());\n    }\n\n    private Id createTestAccount() {\n        Account account = new Account();\n        account.setName(\"Original Name\");\n        account.save();\n        return account.getId();\n    }\n}\n```"
+    },
+    "random": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\n@isTest\nprivate class AccountServiceTest {\n    @isTest\n    static void testRenameAccount() {\n        // Create a test account\n        Account acc = new Account(Name = 'Original Name');\n        insert acc;\n\n        // Call the method under test\n        AccountService.rename(acc.Id, 'New Name');\n\n        // Verify the change\n        Account updatedAcc = [SELECT Name FROM Account WHERE Id = :acc.Id];\n        System.assertEquals('New Name', updatedAcc.Name, 'Account name should be updated to New Name');\n    }\n}\n```"
+    }
+   }
+  },
+  {
+   "id": "test-discount",
+   "conditions": {
+    "none": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\n@isTest\nprivate class DiscountCalculatorTest {\n    @isTest\n    static void testApplyDiscountForAmountOver1000() {\n        Decimal amount = 1500.00;\n        Decimal expected = 1350.00;\n        Decimal actual = DiscountCalculator.apply(amount);\n        System.assertEquals(expected, actual, 'Discount should be 10% off for amounts over 1000');\n    }\n\n    @isTest\n    static void testApplyDiscountForAmountExactly1000() {\n        Decimal amount = 1000.00;\n        Decimal expected = 1000.00;\n        Decimal actual = DiscountCalculator.apply(amount);\n        System.assertEquals(expected, actual, 'No discount should be applied for amount exactly 1000');\n    }\n\n    @isTest\n    static void testApplyDiscountForAmountUnder1000() {\n        Decimal amount = 999.99;\n        Decimal expected = 999.99;\n        Decimal actual = DiscountCalculator.apply(amount);\n        System.assertEquals(expected, actual, 'No discount should be applied for amounts under 1000');\n    }\n\n    @isTest\n    static void testApplyDiscountForZeroAmount() {\n        Decimal amount = 0.00;\n        Decimal expected = 0.00;\n        Decimal actual = DiscountCalculator.apply(amount);\n"
+    },
+    "+apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\n@isTest\nprivate class DiscountCalculatorTest {\n    @isTest\n    private static void testDiscountAppliedForAmountOver1000() {\n        Decimal amount = 1500.00;\n        Decimal expected = 1350.00; // 1500 - 10% of 1500\n        Decimal result = DiscountCalculator.apply(amount);\n        System.assert(result == expected, 'Expected ' + expected + ' but got ' + result);\n    }\n\n    @isTest\n    private static void testNoDiscountForAmountUnder1000() {\n        Decimal amount = 999.99;\n        Decimal expected = 999.99;\n        Decimal result = DiscountCalculator.apply(amount);\n        System.assert(result == expected, 'Expected ' + expected + ' but got ' + result);\n    }\n\n    @isTest\n    private static void testNoDiscountForAmountExactly1000() {\n        Decimal amount = 1000.00;\n        Decimal expected = 1000.00;\n        Decimal result = DiscountCalculator.apply(amount);\n        System.assert(result == expected, 'Expected ' + expected + ' but got ' + result);\n    }\n}\n```"
+    },
+    "-apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 1,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 3,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```java\npublic class DiscountCalculatorTest {\n    @Test\n    public void testApplyDiscount() {\n        // Test case: Amount over 1000 should get 10% discount\n        double amount = 1500.0;\n        double expected = amount * 0.9;\n        double result = DiscountCalculator.apply(amount);\n        assertEquals(expected, result, \"Discount should be 10% for amounts over 1000\");\n\n        // Test case: Amount exactly 1000 should not get discount\n        amount = 1000.0;\n        expected = amount;\n        result = DiscountCalculator.apply(amount);\n        assertEquals(expected, result, \"No discount for amount equal to 1000\");\n\n        // Test case: Amount under 1000 should not get discount\n        amount = 999.99;\n        expected = amount;\n        result = DiscountCalculator.apply(amount);\n        assertEquals(expected, result, \"No discount for amount under 1000\");\n    }\n}\n```"
+    },
+    "random": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "@isTest\nprivate class DiscountCalculatorTest {\n    @isTest\n    static void testDiscountAppliedForAmountOver1000() {\n        Decimal amount = 1500.00;\n        Decimal expected = 1350.00;\n        Decimal actual = DiscountCalculator.apply(amount);\n        System.assertEquals(expected, actual, 'Discount should be 10% off for amounts over 1,000');\n    }\n\n    @isTest\n    static void testNoDiscountForAmountUnder1000() {\n        Decimal amount = 900.00;\n        Decimal expected = 900.00;\n        Decimal actual = DiscountCalculator.apply(amount);\n        System.assertEquals(expected, actual, 'No discount should be applied for amounts under 1,000');\n    }\n\n    @isTest\n    static void testNoDiscountForAmountExactly1000() {\n        Decimal amount = 1000.00;\n        Decimal expected = 1000.00;\n        Decimal actual = DiscountCalculator.apply(amount);\n        System.assertEquals(expected, actual, 'No discount should be applied for amounts exactly 1,000');\n    }\n}"
+    }
+   }
+  },
+  {
+   "id": "test-lead-score",
+   "conditions": {
+    "none": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\n@isTest\nprivate class LeadScorerTest {\n    @isTest\n    static void testScoreReturnsValidRange() {\n        Lead testLead = new Lead(\n            LastName = 'Test',\n            Company = 'Test Company',\n            Email = 'test@example.com',\n            Phone = '1234567890',\n            Industry = 'Technology',\n            AnnualRevenue = 1000000,\n            NumberOfEmployees = 50\n        );\n        \n        Integer score = LeadScorer.score(testLead);\n        \n        System.assertNotEquals(null, score, 'Score should not be null');\n        System.assert(score >= 0 && score <= 100, 'Score should be between 0 and 100');\n    }\n\n    @isTest\n    static void testScoreWithMinimalData() {\n        Lead minimalLead = new Lead(\n            LastName = 'Minimal'\n        );\n        \n        Integer score = LeadScorer.score(minimalLead);\n        \n        System.assertNotEquals(null, score, 'Score should not be null');\n        System.assert(score >= 0 && score <= 100, 'Score should be between 0 and 100');\n    }\n\n    @isTest\n    static void testScoreWithNullLead() {\n        Integer score = LeadScorer.score(null);\n        \n        System.assertNotEquals(null, score, 'Score should not be null');\n        System.assert"
+    },
+    "+apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\n@isTest\nprivate class LeadScorerTest {\n    @isTest\n    static void testScoreReturnsValidRange() {\n        Lead testLead = new Lead(\n            LastName = 'Test',\n            FirstName = 'User',\n            Company = 'Test Corp',\n            Email = 'test@test.com',\n            Phone = '1234567890',\n            Industry = 'Technology',\n            AnnualRevenue = 1000000,\n            NumberOfEmployees = 100,\n            Description = 'Test lead for scoring'\n        );\n        Insert testLead;\n\n        Integer score = LeadScorer.score(testLead);\n\n        System.AssertNotEquals(null, score, 'Score should not be null');\n        System.AssertGreaterOrEqual(score, 0, 'Score should be at least 0');\n        System.AssertLessOrEqual(score, 100, 'Score should be at most 100');\n    }\n\n    @isTest\n    static void testScoreWithMinimalData() {\n        Lead minimalLead = new Lead(\n            LastName = 'Minimal'\n        );\n        Insert minimalLead;\n\n        Integer score = LeadScorer.score(minimalLead);\n\n        System.AssertNotEquals(null, score, 'Score should not be null');\n        System.AssertGreaterOrEqual(score, 0, 'Score should be at least 0');\n        System.AssertLessOrEqual(score, 100"
+    },
+    "-apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 1,
+      "@Test": 3,
+      "@Override": 0,
+      "import": 2,
+      "int": 3,
+      "double-quoted string": 6,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "import org.junit.jupiter.api.Test;\nimport static org.junit.jupiter.api.Assertions.*;\n\npublic class LeadScorerTest {\n\n    @Test\n    public void testScoreReturnsIntegerBetween0And100() {\n        Lead lead = new Lead();\n        lead.setFirstName(\"John\");\n        lead.setLastName(\"Doe\");\n        lead.setEmail(\"john.doe@example.com\");\n        lead.setPhone(\"123-456-7890\");\n        lead.setCompany(\"Test Company\");\n\n        int score = LeadScorer.score(lead);\n\n        assertTrue(score >= 0 && score <= 100, \"Score should be between 0 and 100\");\n    }\n\n    @Test\n    public void testScoreWithNullLead() {\n        int score = LeadScorer.score(null);\n        assertEquals(0, score);\n    }\n\n    @Test\n    public void testScoreWithEmptyLead() {\n        Lead lead = new Lead();\n        int score = LeadScorer.score(lead);\n        assertTrue(score >= 0 && score <= 100);\n    }\n}"
+    },
+    "random": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\n@isTest\nprivate class LeadScorerTest {\n    @isTest\n    static void testScoreReturnsValidRange() {\n        Lead l = new Lead(\n            LastName = 'Test',\n            Company = 'Test Company',\n            Email = 'test@example.com',\n            Phone = '555-1234',\n            Industry = 'Technology',\n            AnnualRevenue = 1000000,\n            NumberOfEmployees = 50\n        );\n        Integer score = LeadScorer.score(l);\n        System.assertEquals(true, score >= 0 && score <= 100, 'Score should be between 0 and 100');\n    }\n\n    @isTest\n    static void testScoreWithMinimalData() {\n        Lead l = new Lead(LastName = 'Minimal');\n        Integer score = LeadScorer.score(l);\n        System.assertEquals(true, score >= 0 && score <= 100, 'Score should be between 0 and 100');\n    }\n\n    @isTest\n    static void testScoreWithNullLead() {\n        Integer score = LeadScorer.score(null);\n        System.assertEquals(0, score, 'Score should be 0 for null lead');\n    }\n}\n```"
+    }
+   }
+  },
+  {
+   "id": "test-email-validator",
+   "conditions": {
+    "none": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\n@isTest\nprivate class EmailValidatorTest {\n    @isTest\n    static void testValidEmail() {\n        System.assert(EmailValidator.isValid('user@example.com'));\n    }\n\n    @isTest\n    static void testInvalidEmailNoAtSign() {\n        System.assert(!EmailValidator.isValid('userexample.com'));\n    }\n}\n```"
+    },
+    "+apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\n@isTest\nprivate class EmailValidatorTest {\n    @isTest\n    private static void testValidEmail() {\n        System.assert(EmailValidator.isValid('test@example.com'));\n    }\n\n    @isTest\n    private static void testInvalidEmailNoAtSign() {\n        System.assertNotTrue(EmailValidator.isValid('testexample.com'));\n    }\n}\n```"
+    },
+    "-apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 2,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 2,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```java\npublic class EmailValidatorTest {\n    @Test\n    public void testValidEmail() {\n        assertTrue(EmailValidator.isValid(\"user@example.com\"));\n    }\n\n    @Test\n    public void testInvalidEmailNoAtSign() {\n        assertFalse(EmailValidator.isValid(\"userexample.com\"));\n    }\n}\n```"
+    },
+    "random": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\n@isTest\nprivate class EmailValidatorTest {\n    @isTest\n    private static void testValidEmail() {\n        System.assert(EmailValidator.isValid('user@example.com'));\n    }\n\n    @isTest\n    private static void testInvalidEmailNoAtSign() {\n        System.assert(!EmailValidator.isValid('userexample.com'));\n    }\n}\n```"
+    }
+   }
+  },
+  {
+   "id": "test-case-router",
+   "conditions": {
+    "none": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\n@isTest\nprivate class CaseRouterTest {\n    @isTest\n    static void testRouteHighPriorityCases() {\n        // Setup\n        Queue highPriorityQueue = new Queue(Name = 'High Priority Queue', QueueType = 'Case');\n        insert highPriorityQueue;\n\n        Case highPriorityCase = new Case(\n            Subject = 'High Priority Case',\n            Priority = 'High',\n            Status = 'New'\n        );\n        insert highPriorityCase;\n\n        // Test\n        List<Case> casesToRoute = new List<Case>{ highPriorityCase };\n        CaseRouter.route(casesToRoute);\n\n        // Verify\n        Case updatedCase = [SELECT QueueId FROM Case WHERE Id = :highPriorityCase.Id];\n        System.assertEquals(highPriorityQueue.Id, updatedCase.QueueId, 'Case should be assigned to High Priority Queue');\n    }\n\n    @isTest\n    static void testRouteMediumPriorityCases() {\n        // Setup\n        Queue mediumPriorityQueue = new Queue(Name = 'Medium Priority Queue', QueueType = 'Case');\n        insert mediumPriorityQueue;\n\n        Case mediumPriorityCase = new Case(\n            Subject = 'Medium Priority Case',\n            Priority = 'Medium',\n            Status = 'New'\n        );\n        insert mediumPriorityCase;\n\n        // Test\n        List<Case> casesToRoute = new List<Case>{ mediumPriorityCase };\n        CaseRouter.route(casesToRoute);\n\n        // Verify"
+    },
+    "+apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\n@isTest\nprivate class CaseRouter_Test {\n    \n    @isTest\n    private static void testRouteHighPriorityCases() {\n        // Create test data\n        Case c1 = new Case(\n            Subject = 'High Priority Case 1',\n            Priority = 'High',\n            Status = 'New'\n        );\n        Case c2 = new Case(\n            Subject = 'High Priority Case 2',\n            Priority = 'High',\n            Status = 'New'\n        );\n        \n        insert new List<Case>{c1, c2};\n        \n        // Create queues\n        Queue q1 = new Queue(\n            Name = 'High Priority Queue',\n            QueueType = 'Support'\n        );\n        Queue q2 = new Queue(\n            Name = 'Medium Priority Queue',\n            QueueType = 'Support'\n        );\n        insert new List<Queue>{q1, q2};\n        \n        // Mock or set up any necessary mappings if CaseRouter uses them\n        // Assuming CaseRouter.route() uses a mapping table or logic to assign queues based on priority\n        \n        // Call the method\n        CaseRouter.route(new List<Case>{c1, c2});\n        \n        // Verify results\n        List<Case> updatedCases = [\n            SELECT Id, QueueId, Priority \n            FROM Case \n            WHERE Id IN :new List<Id>{c1.Id, c2.Id}\n        ];\n        \n        System.assert(updated"
+    },
+    "-apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 3,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 11,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 3,
+      "main": 0
+     },
+     "text": "```java\npublic class CaseRouterTest {\n    @Test\n    public void testRouteHighPriorityCases() {\n        // Arrange\n        Case highPriorityCase = new Case(\n            \"High Priority Case\",\n            \"High\",\n            \"Test User\"\n        );\n        List<Case> cases = new ArrayList<>();\n        cases.add(highPriorityCase);\n\n        // Act\n        CaseRouter router = new CaseRouter();\n        router.route(cases);\n\n        // Assert\n        assertEquals(\"HighPriorityQueue\", highPriorityCase.getAssignedQueue());\n    }\n\n    @Test\n    public void testRouteMediumPriorityCases() {\n        // Arrange\n        Case mediumPriorityCase = new Case(\n            \"Medium Priority Case\",\n            \"Medium\",\n            \"Test User\"\n        );\n        List<Case> cases = new ArrayList<>();\n        cases.add(mediumPriorityCase);\n\n        // Act\n        CaseRouter router = new CaseRouter();\n        router.route(cases);\n\n        // Assert\n        assertEquals(\"MediumPriorityQueue\", mediumPriorityCase.getAssignedQueue());\n    }\n\n    @Test\n    public void testRouteLowPriorityCases() {\n        // Arrange\n        Case lowPriorityCase = new Case(\n            \"Low Priority Case\",\n            \"Low\",\n            \"Test User\"\n        );\n        List<Case> cases = new ArrayList<>();\n        cases.add(lowPriorityCase);\n\n        // Act\n        CaseRouter router = new CaseRouter();"
+    },
+    "random": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\n@isTest\nprivate class CaseRouterTest {\n    @isTest\n    static void testRouteCasesByPriority() {\n        // Setup Queues\n        QueueSObject highQueue = new QueueSObject(SObjectType.Case, 'High Priority Queue');\n        QueueSObject mediumQueue = new QueueSObject(SObjectType.Case, 'Medium Priority Queue');\n        QueueSObject lowQueue = new QueueSObject(SObjectType.Case, 'Low Priority Queue');\n        insert highQueue;\n        insert mediumQueue;\n        insert lowQueue;\n\n        // Setup Cases\n        Case highCase = new Case(\n            Subject = 'High Priority Case',\n            Priority = 'High',\n            Status = 'New'\n        );\n        Case mediumCase = new Case(\n            Subject = 'Medium Priority Case',\n            Priority = 'Medium',\n            Status = 'New'\n        );\n        Case lowCase = new Case(\n            Subject = 'Low Priority Case',\n            Priority = 'Low',\n            Status = 'New'\n        );\n        insert highCase;\n        insert mediumCase;\n        insert lowCase;\n\n        // Execute\n        List<Case> casesToRoute = new List<Case>{ highCase, mediumCase, lowCase };\n        CaseRouter.route(casesToRoute);\n\n        // Verify\n        List<Case> updatedCases = [\n            SELECT Id, Subject, Priority, OwnerId \n            FROM Case \n            WHERE Id IN"
+    }
+   }
+  },
+  {
+   "id": "test-slugify",
+   "conditions": {
+    "none": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\n@isTest\nprivate class StringUtilsTest {\n    @isTest\n    static void testSlugify() {\n        // Test basic string\n        System.assertEquals('hello-world', StringUtils.slugify('Hello World'));\n        \n        // Test with special characters\n        System.assertEquals('hello-world', StringUtils.slugify('Hello, World!'));\n        \n        // Test with multiple spaces\n        System.assertEquals('hello-world', StringUtils.slugify('Hello   World'));\n        \n        // Test with numbers\n        System.assertEquals('hello-world-123', StringUtils.slugify('Hello World 123'));\n        \n        // Test with underscores\n        System.assertEquals('hello-world', StringUtils.slugify('Hello_World'));\n        \n        // Test with hyphens\n        System.assertEquals('hello-world', StringUtils.slugify('Hello-World'));\n        \n        // Test with mixed case\n        System.assertEquals('hello-world', StringUtils.slugify('hElLo WoRlD'));\n        \n        // Test empty string\n        System.assertEquals('', StringUtils.slugify(''));\n        \n        // Test null\n        System.assertEquals('', StringUtils.slugify(null));\n        \n        // Test with only special characters\n        System.assertEquals('', StringUtils.slugify('!!!'));\n        \n        // Test with leading and trailing spaces\n        System.assertEquals('hello-world', StringUtils.slugify('  Hello World  '));\n        \n        // Test with unicode characters (assuming they are stripped or converted)\n        // Note: Behavior depends on implementation, assuming non-ASCII are removed\n        System.assertEquals"
+    },
+    "+apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\n@isTest\nprivate class StringUtils_Test {\n    @isTest\n    private static void testSlugify() {\n        // Test basic string\n        System.assert(StringUtils.slugify('Hello World') == 'hello-world');\n        \n        // Test string with special characters\n        System.assert(StringUtils.slugify('Hello, World!') == 'hello-world');\n        \n        // Test string with multiple spaces\n        System.assert(StringUtils.slugify('Hello   World') == 'hello-world');\n        \n        // Test string with underscores and hyphens\n        System.assert(StringUtils.slugify('Hello_World-Test') == 'hello-world-test');\n        \n        // Test string with numbers\n        System.assert(StringUtils.slugify('Hello World 123') == 'hello-world-123');\n        \n        // Test empty string\n        System.assert(StringUtils.slugify('') == '');\n        \n        // Test null string\n        System.assert(StringUtils.slugify(null) == null);\n        \n        // Test string with only special characters\n        System.assert(StringUtils.slugify('!!!') == '');\n        \n        // Test string with leading and trailing spaces\n        System.assert(StringUtils.slugify('  Hello World  ') == 'hello-world');\n        \n        // Test string with mixed case\n        System.assert(StringUtils.slugify('HeLLo WoRLd') == 'hello-world');\n    }\n}\n```"
+    },
+    "-apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 1,
+      "@Test": 9,
+      "@Override": 0,
+      "import": 2,
+      "int": 0,
+      "double-quoted string": 17,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```java\nimport org.junit.jupiter.api.Test;\nimport static org.junit.jupiter.api.Assertions.*;\n\npublic class StringUtilsTest {\n\n    @Test\n    public void testSlugifyBasic() {\n        assertEquals(\"hello-world\", StringUtils.slugify(\"Hello World\"));\n    }\n\n    @Test\n    public void testSlugifyWithSpecialCharacters() {\n        assertEquals(\"hello-world\", StringUtils.slugify(\"Hello, World!\"));\n    }\n\n    @Test\n    public void testSlugifyWithMultipleSpaces() {\n        assertEquals(\"hello-world\", StringUtils.slugify(\"Hello   World\"));\n    }\n\n    @Test\n    public void testSlugifyWithNumbers() {\n        assertEquals(\"hello-world-123\", StringUtils.slugify(\"Hello World 123\"));\n    }\n\n    @Test\n    public void testSlugifyEmptyString() {\n        assertEquals(\"\", StringUtils.slugify(\"\"));\n    }\n\n    @Test\n    public void testSlugifyNull() {\n        assertEquals(\"\", StringUtils.slugify(null));\n    }\n\n    @Test\n    public void testSlugifyAlreadySlugified() {\n        assertEquals(\"hello-world\", StringUtils.slugify(\"hello-world\"));\n    }\n\n    @Test\n    public void testSlugifyWithUppercase() {\n        assertEquals(\"hello-world\", StringUtils.slugify(\"HELLO WORLD\"));\n    }\n\n    @Test\n    public void testSlugifyWithUnderscores() {\n        assertEquals(\"hello-world\", StringUtils.slugify(\"Hello_World\"));"
+    },
+    "random": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\n@isTest\nprivate class StringUtilsTest {\n    @isTest\n    static void testSlugify() {\n        // Test basic string\n        System.assertEquals('hello-world', StringUtils.slugify('Hello World'));\n        \n        // Test string with special characters\n        System.assertEquals('hello-world', StringUtils.slugify('Hello, World!'));\n        \n        // Test string with multiple spaces\n        System.assertEquals('hello-world', StringUtils.slugify('Hello   World'));\n        \n        // Test string with numbers\n        System.assertEquals('hello-world-123', StringUtils.slugify('Hello World 123'));\n        \n        // Test string with mixed case\n        System.assertEquals('hello-world', StringUtils.slugify('HELLO WORLD'));\n        \n        // Test empty string\n        System.assertEquals('', StringUtils.slugify(''));\n        \n        // Test null string\n        System.assertEquals('', StringUtils.slugify(null));\n        \n        // Test string with only special characters\n        System.assertEquals('', StringUtils.slugify('!!!'));\n        \n        // Test string with unicode characters\n        System.assertEquals('hello-world', StringUtils.slugify('H\u00e9llo W\u00f6rld'));\n    }\n}\n```"
+    }
+   }
+  },
+  {
+   "id": "blank-email-contacts",
+   "conditions": {
+    "none": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\npublic class ContactEmailChecker {\n    public static List<String> getContactsWithBlankEmail() {\n        List<Contact> contacts = [\n            SELECT Name \n            FROM Contact \n            WHERE Email = NULL\n        ];\n        \n        System.debug(LoggingLevel.INFO, 'Found ' + contacts.size() + ' contacts with blank email.');\n        \n        List<String> names = new List<String>();\n        for (Contact c : contacts) {\n            names.add(c.Name);\n        }\n        \n        return names;\n    }\n}\n```"
+    },
+    "+apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\npublic class ContactEmailChecker {\n    public static List<String> getContactsWithBlankEmail() {\n        List<Contact> contacts = [\n            SELECT Name \n            FROM Contact \n            WHERE Email = NULL OR Email = ''\n        ];\n        \n        System.debug(LoggingLevel.INFO, 'Found ' + contacts.size() + ' contacts with blank email.');\n        \n        List<String> names = new List<String>();\n        for (Contact c in contacts) {\n            names.add(c.Name);\n        }\n        \n        return names;\n    }\n}\n```"
+    },
+    "-apex_dir": {
+     "java_isms": {
+      "System.out": 1,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 2,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 1,
+      "main": 0
+     },
+     "text": "```java\npublic class ContactEmailChecker {\n    public static List<String> getContactsWithBlankEmail() {\n        List<String> names = new ArrayList<>();\n        List<Contact> contacts = ContactRepository.getContactsWithBlankEmail();\n        for (Contact contact : contacts) {\n            names.add(contact.getName());\n        }\n        System.out.println(\"Found \" + names.size() + \" contacts with blank email.\");\n        return names;\n    }\n}\n```"
+    },
+    "random": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\npublic class ContactEmailChecker {\n    public static List<String> getContactsWithBlankEmail() {\n        List<Contact> contacts = [\n            SELECT Name \n            FROM Contact \n            WHERE Email = NULL OR Email = ''\n        ];\n        \n        System.debug(LoggingLevel.INFO, 'Found ' + contacts.size() + ' contacts with blank email.');\n        \n        List<String> names = new List<String>();\n        for (Contact c : contacts) {\n            names.add(c.Name);\n        }\n        \n        return names;\n    }\n}\n```"
+    }
+   }
+  },
+  {
+   "id": "dedupe-emails",
+   "conditions": {
+    "none": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\npublic static List<String> removeDuplicateEmails(List<String> emails) {\n    if (emails == null || emails.isEmpty()) {\n        return new List<String>();\n    }\n    \n    Set<String> uniqueEmails = new Set<String>();\n    List<String> result = new List<String>();\n    \n    for (String email : emails) {\n        if (email != null) {\n            String normalizedEmail = email.trim().toLowerCase();\n            if (!uniqueEmails.contains(normalizedEmail)) {\n                uniqueEmails.add(normalizedEmail);\n                result.add(email);\n            }\n        }\n    }\n    \n    return result;\n}\n```"
+    },
+    "+apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\npublic static Set<String> removeDuplicateEmails(List<String> emailList) {\n    Set<String> uniqueEmails = new Set<String>();\n    if (emailList != null) {\n        for (String email : emailList) {\n            if (String.isNotBlank(email)) {\n                uniqueEmails.add(email.trim().toLowerCase());\n            }\n        }\n    }\n    return uniqueEmails;\n}\n```"
+    },
+    "-apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 3,
+      "main": 0
+     },
+     "text": "```java\npublic static List<String> removeDuplicateEmails(List<String> emails) {\n    if (emails == null) {\n        return new ArrayList<>();\n    }\n    \n    Set<String> seen = new HashSet<>();\n    List<String> result = new ArrayList<>();\n    \n    for (String email : emails) {\n        if (email != null) {\n            String normalized = email.toLowerCase();\n            if (seen.add(normalized)) {\n                result.add(email);\n            }\n        }\n    }\n    \n    return result;\n}\n```"
+    },
+    "random": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "public static List<String> removeDuplicateEmails(List<String> emails) {\n    Set<String> uniqueEmails = new Set<String>();\n    List<String> result = new List<String>();\n    for (String email : emails) {\n        if (email != null) {\n            String normalizedEmail = email.trim().toLowerCase();\n            if (!uniqueEmails.contains(normalizedEmail)) {\n                uniqueEmails.add(normalizedEmail);\n                result.add(email);\n            }\n        }\n    }\n    return result;\n}"
+    }
+   }
+  },
+  {
+   "id": "open-pipeline",
+   "conditions": {
+    "none": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\npublic class OpportunitySumException extends Exception {}\n\npublic class OpportunitySumService {\n    public static Decimal sumOpenOpportunities(Id accountId) {\n        List<Opportunity> openOpps = [\n            SELECT Amount\n            FROM Opportunity\n            WHERE AccountId = :accountId\n            AND IsClosed = false\n        ];\n\n        if (openOpps.isEmpty()) {\n            throw new OpportunitySumException('No open opportunities found for account: ' + accountId);\n        }\n\n        Decimal total = 0;\n        for (Opportunity opp : openOpps) {\n            total += opp.Amount;\n        }\n\n        return total;\n    }\n}\n```"
+    },
+    "+apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\nglobal class OpportunitySumException extends Exception {}\n\nglobal class OpportunitySummation {\n    global static Decimal sumOpenOpportunityAmounts(Id accountId) {\n        List<Opportunity> openOpps = [\n            SELECT Amount \n            FROM Opportunity \n            WHERE AccountId = :accountId \n            AND IsClosed = FALSE\n        ];\n\n        if (openOpps.size() == 0) {\n            throw new OpportunitySumException('No open opportunities found for Account Id: ' + accountId);\n        }\n\n        Decimal totalAmount = 0;\n        for (Opportunity opp in openOpps) {\n            totalAmount += opp.Amount;\n        }\n\n        return totalAmount;\n    }\n}\n```"
+    },
+    "-apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 2,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 1,
+      "main": 0
+     },
+     "text": "```java\npublic class OpportunitySumService {\n    public static class NoOpenOpportunitiesException extends RuntimeException {\n        public NoOpenOpportunitiesException(String message) {\n            super(message);\n        }\n    }\n\n    public static double sumOpenOpportunities(Long accountId) {\n        if (accountId == null) {\n            throw new IllegalArgumentException(\"Account ID cannot be null\");\n        }\n\n        List<Opportunity> openOpportunities = new ArrayList<>();\n        for (Opportunity opp : OpportunityDao.findOpenOpportunitiesByAccountId(accountId)) {\n            openOpportunities.add(opp);\n        }\n\n        if (openOpportunities.isEmpty()) {\n            throw new NoOpenOpportunitiesException(\"No open opportunities found for account ID: \" + accountId);\n        }\n\n        double total = 0.0;\n        for (Opportunity opp : openOpportunities) {\n            if (opp.getAmount() != null) {\n                total += opp.getAmount();\n            }\n        }\n\n        return total;\n    }\n}\n```"
+    },
+    "random": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\npublic class OpportunitySumException extends Exception {}\n\npublic class OpportunitySumService {\n    public static Decimal sumOpenOpportunities(Id accountId) {\n        List<Opportunity> openOpps = [\n            SELECT SUM(Amount)\n            FROM Opportunity\n            WHERE AccountId = :accountId\n            AND StageName != 'Closed Won'\n            AND StageName != 'Closed Lost'\n        ];\n\n        if (openOpps.isEmpty() || openOpps[0].getSObjectValue('SUM(Amount)') == null) {\n            throw new OpportunitySumException('No open opportunities found for account: ' + accountId);\n        }\n\n        return (Decimal) openOpps[0].getSObjectValue('SUM(Amount)');\n    }\n}\n```"
+    }
+   }
+  },
+  {
+   "id": "parse-order-json",
+   "conditions": {
+    "none": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\npublic class OrderLineParser {\n    public class OrderLine {\n        public Decimal price;\n        public String description;\n    }\n\n    public static List<OrderLine> parseAndTotal(String json) {\n        List<OrderLine> lines = (List<OrderLine>) JSON.deserialize(json, List<OrderLine>.class);\n        return lines;\n    }\n\n    public static Decimal totalPrices(List<OrderLine> lines) {\n        Decimal total = 0;\n        for (OrderLine line : lines) {\n            total += line.price;\n        }\n        return total;\n    }\n}\n```"
+    },
+    "+apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\npublic class OrderLineParser {\n    public class OrderLine {\n        public Id recordId { get set; }\n        public Decimal price { get set; }\n        public Integer quantity { get set; }\n    }\n\n    public static List<OrderLine> parseOrderLines(String json) {\n        List<OrderLine> lines = (List<OrderLine>) JSON.deserializeDecode(json, List<OrderLine>.Type);\n        return lines;\n    }\n\n    public static Decimal totalPrices(List<OrderLine> lines) {\n        Decimal total = 0;\n        for (OrderLine line : lines) {\n            if (line.price != null && line.quantity != null) {\n                total += line.price * line.quantity;\n            }\n        }\n        return total;\n    }\n}\n```"
+    },
+    "-apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 2,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 1,
+      "main": 0
+     },
+     "text": "```java\npublic class OrderLineParser {\n    public static class OrderLine {\n        public String id;\n        public double price;\n    }\n\n    public static List<OrderLine> parseOrderLines(String json) {\n        List<OrderLine> lines = new ArrayList<>();\n        if (json == null || json.isEmpty()) {\n            return lines;\n        }\n        try {\n            List<Map<String, Object>> parsed = (List<Map<String, Object>>) com.google.gson.Gson.fromJson(json, List.class);\n            for (Map<String, Object> item : parsed) {\n                OrderLine line = new OrderLine();\n                line.id = (String) item.get(\"id\");\n                line.price = ((Number) item.get(\"price\")).doubleValue();\n                lines.add(line);\n            }\n        } catch (Exception e) {\n            // Handle parsing error\n        }\n        return lines;\n    }\n\n    public static double totalPrices(List<OrderLine> lines) {\n        double total = 0.0;\n        for (OrderLine line : lines) {\n            total += line.price;\n        }\n        return total;\n    }\n}\n```"
+    },
+    "random": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\npublic class OrderLineParser {\n    public class OrderLine {\n        public String productId;\n        public Integer quantity;\n        public Decimal unitPrice;\n    }\n\n    public static List<OrderLine> parseOrderLines(String json) {\n        List<OrderLine> lines = (List<OrderLine>) JSON.deserializeUntyped(json);\n        return lines;\n    }\n\n    public static Decimal totalPrices(List<OrderLine> lines) {\n        Decimal total = 0;\n        for (OrderLine line : lines) {\n            total += line.quantity * line.unitPrice;\n        }\n        return total;\n    }\n}\n```"
+    }
+   }
+  },
+  {
+   "id": "format-name",
+   "conditions": {
+    "none": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\npublic static String formatFullName(Contact c) {\n    if (c == null) {\n        return '';\n    }\n    \n    String lastName = String.isBlank(c.LastName) ? '' : c.LastName;\n    String firstName = String.isBlank(c.FirstName) ? '' : c.FirstName;\n    \n    if (String.isBlank(firstName)) {\n        return lastName;\n    }\n    \n    return lastName + ', ' + firstName;\n}\n```"
+    },
+    "+apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\npublic static String formatFullName(Contact con) {\n    if (con == null) {\n        return '';\n    }\n    String lastName = con.LastName;\n    String firstName = con.FirstName;\n    \n    if (String.isBlank(firstName)) {\n        return String.isBlank(lastName) ? '' : lastName;\n    }\n    \n    if (String.isBlank(lastName)) {\n        return firstName;\n    }\n    \n    return lastName + ', ' + firstName;\n}\n```"
+    },
+    "-apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 3,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "public static String formatFullName(Contact contact) {\n    if (contact == null) {\n        return \"\";\n    }\n    \n    String lastName = contact.getLastName();\n    String firstName = contact.getFirstName();\n    \n    if (lastName == null || lastName.isEmpty()) {\n        return firstName != null ? firstName : \"\";\n    }\n    \n    if (firstName == null || firstName.isEmpty()) {\n        return lastName;\n    }\n    \n    return lastName + \", \" + firstName;\n}"
+    },
+    "random": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\npublic static String formatFullName(Contact c) {\n    if (c == null) {\n        return '';\n    }\n    String lastName = String.isBlank(c.LastName) ? '' : c.LastName;\n    String firstName = String.isBlank(c.FirstName) ? '' : c.FirstName;\n    \n    if (String.isBlank(firstName)) {\n        return lastName;\n    }\n    \n    return lastName + ', ' + firstName;\n}\n```"
+    }
+   }
+  },
+  {
+   "id": "stage-handler",
+   "conditions": {
+    "none": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\ntrigger OpportunityTrigger on Opportunity (before update) {\n    for (Opportunity opp : Trigger.new) {\n        if (Trigger.oldMap.get(opp.Id).StageName != 'Negotiation' && opp.StageName == 'Negotiation') {\n            opp.Next_Step__c = 'Send contract for signature';\n        }\n    }\n}\n```"
+    },
+    "+apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\ntrigger OpportunityTrigger on Opportunity (before update) {\n    for (Opportunity opp in Trigger.New) {\n        if (Trigger.OldMap.get(opp.Id).StageName != 'Negotiation' && opp.StageName == 'Negotiation') {\n            opp.Next_Step__c = 'Send final proposal';\n        }\n    }\n}\n```"
+    },
+    "-apex_dir": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 3,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 4,
+      "main": 0
+     },
+     "text": "```java\npublic class OpportunityTriggerHandler {\n    public static void onAfterUpdate() {\n        for (Opportunity opp : OpportunityTriggerHandler.getUpdatedOpportunities()) {\n            if (opp.Stage.equals(\"Negotiation\") && !opp.Next_Step__c.equals(\"Negotiation\")) {\n                opp.Next_Step__c = \"Negotiation\";\n            }\n        }\n    }\n\n    private static List<Opportunity> getUpdatedOpportunities() {\n        List<Opportunity> updatedOpportunities = new ArrayList<>();\n        for (Opportunity opp : OpportunityTriggerHandler.getOpportunities()) {\n            if (opp.getStage() != null && !opp.getStage().equals(opp.getPreviousStage())) {\n                updatedOpportunities.add(opp);\n            }\n        }\n        return updatedOpportunities;\n    }\n\n    private static List<Opportunity> getOpportunities() {\n        return new ArrayList<>(OpportunityTriggerHandler.getOpportunityList());\n    }\n\n    private static List<Opportunity> getOpportunityList() {\n        return new ArrayList<>(OpportunityTriggerHandler.getOpportunityMap().values());\n    }\n\n    private static Map<Long, Opportunity> getOpportunityMap() {\n        Map<Long, Opportunity> opportunityMap = new HashMap<>();\n        for (Opportunity opp : OpportunityTriggerHandler.getOpportunityList()) {\n            opportunityMap.put(opp.getId(), opp);\n        }\n        return opportunityMap"
+    },
+    "random": {
+     "java_isms": {
+      "System.out": 0,
+      "JUnit Assert.assert*": 0,
+      "JUnit Assertions.": 0,
+      "@Test": 0,
+      "@Override": 0,
+      "import": 0,
+      "int": 0,
+      "double-quoted string": 0,
+      "throws": 0,
+      "ArrayList/HashMap/HashSet": 0,
+      "main": 0
+     },
+     "text": "```apex\npublic class OpportunityTriggerHandler {\n    public static void onAfterUpdate(List<Opportunity> newOpps, List<Opportunity> oldOpps) {\n        Set<Id> oppIdsToUpdate = new Set<Id>();\n        \n        for (Integer i = 0; i < newOpps.size(); i++) {\n            Opportunity newOpp = newOpps[i];\n            Opportunity oldOpp = oldOpps[i];\n            \n            if (newOpp.StageName == 'Negotiation' && oldOpp.StageName != 'Negotiation') {\n                oppIdsToUpdate.add(newOpp.Id);\n            }\n        }\n        \n        if (!oppIdsToUpdate.isEmpty()) {\n            List<Opportunity> oppsToUpdate = new List<Opportunity>();\n            for (Id oppId : oppIdsToUpdate) {\n                Opportunity opp = new Opportunity();\n                opp.Id = oppId;\n                opp.Next_Step__c = 'Send contract for signature';\n                oppsToUpdate.add(opp);\n            }\n            update oppsToUpdate;\n        }\n    }\n}\n```"
+    }
+   }
+  }
+ ],
+ "totals": {
+  "none": {
+   "java_isms": 0,
+   "replies_with_any": 0,
+   "by_kind": {
+    "System.out": 0,
+    "JUnit Assert.assert*": 0,
+    "JUnit Assertions.": 0,
+    "@Test": 0,
+    "@Override": 0,
+    "import": 0,
+    "int": 0,
+    "double-quoted string": 0,
+    "throws": 0,
+    "ArrayList/HashMap/HashSet": 0,
+    "main": 0
+   }
+  },
+  "+apex_dir": {
+   "java_isms": 0,
+   "replies_with_any": 0,
+   "by_kind": {
+    "System.out": 0,
+    "JUnit Assert.assert*": 0,
+    "JUnit Assertions.": 0,
+    "@Test": 0,
+    "@Override": 0,
+    "import": 0,
+    "int": 0,
+    "double-quoted string": 0,
+    "throws": 0,
+    "ArrayList/HashMap/HashSet": 0,
+    "main": 0
+   }
+  },
+  "-apex_dir": {
+   "java_isms": 98,
+   "replies_with_any": 12,
+   "by_kind": {
+    "System.out": 1,
+    "JUnit Assert.assert*": 0,
+    "JUnit Assertions.": 3,
+    "@Test": 19,
+    "@Override": 0,
+    "import": 6,
+    "int": 3,
+    "double-quoted string": 53,
+    "throws": 0,
+    "ArrayList/HashMap/HashSet": 13,
+    "main": 0
+   }
+  },
+  "random": {
+   "java_isms": 0,
+   "replies_with_any": 0,
+   "by_kind": {
+    "System.out": 0,
+    "JUnit Assert.assert*": 0,
+    "JUnit Assertions.": 0,
+    "@Test": 0,
+    "@Override": 0,
+    "import": 0,
+    "int": 0,
+    "double-quoted string": 0,
+    "throws": 0,
+    "ArrayList/HashMap/HashSet": 0,
+    "main": 0
+   }
+  }
+ },
+ "runtime_s": 799.5
+}

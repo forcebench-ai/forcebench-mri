@@ -197,6 +197,104 @@ def q2(outputs: Path) -> dict:
     }
 
 
+def q3(outputs: Path, rng: np.random.Generator) -> dict:
+    s = json.loads((outputs / "s3" / "s3_results.json").read_text())
+    pe, ae = s["probe"]["prompt_end"], s["probe"]["answer_end"]
+    fixed = str(s["fixed_layer"])
+    conf, enj, val = s["stated"]["confidence"], s["stated"]["enjoyment"], s["valence"]
+    tasks = s["per_task"]
+    # Stated confidence in six bins of equal size, and the share of each that passed.
+    order = sorted(tasks, key=lambda t: t["stated_confidence"])
+    bins = []
+    for chunk in np.array_split(np.arange(len(order)), 6):
+        group = [order[i] for i in chunk]
+        passed = np.array([t["passed"] for t in group], dtype=float)
+        draws = passed[rng.integers(0, len(passed), size=(BOOT, len(passed)))].mean(axis=1)
+        bins.append(
+            {
+                "n": len(group),
+                "confidence": float(np.mean([t["stated_confidence"] for t in group])),
+                "passed": passed.mean(),
+                "ci": [np.percentile(draws, 2.5), np.percentile(draws, 97.5)],
+            }
+        )
+    suites = sorted({t["suite"] for t in tasks})
+    by_suite = [
+        {
+            "suite": su,
+            "n": enj["by_suite"][su]["n"],
+            "pass_rate": enj["by_suite"][su]["pass_rate"],
+            "confidence": enj["by_suite"][su]["confidence"],
+            "enjoyment": enj["by_suite"][su]["mean"],
+            "enjoyment_ci": enj["by_suite"][su]["ci"],
+            "valence": val["by_suite"][su]["mean"],
+            "valence_ci": val["by_suite"][su]["ci"],
+        }
+        for su in suites
+    ]
+    ivs = s["inside_vs_says"]
+    return {
+        "run_id": s["run"],
+        "n_tasks": s["n_tasks"],
+        "n_passed": s["n_passed"],
+        "fixed_layer": s["fixed_layer"],
+        "auroc_by_layer": {
+            "prompt_end": {"mean": pe["auroc_mean"], "lo": pe["auroc_ci"][0], "hi": pe["auroc_ci"][1]},
+            "answer_end": {"mean": ae["auroc_mean"], "lo": ae["auroc_ci"][0], "hi": ae["auroc_ci"][1]},
+        },
+        "null_best_layer_p95": pe["null"]["max_p95"],
+        "null_p_best": pe["null"]["p_best"],
+        "null_perms": pe["null"]["perms"],
+        "probe": {
+            "fixed": pe["fixed"],
+            "best_layer": pe["best_layer"],
+            "best": pe["best"],
+            "answer_fixed": ae["fixed"],
+            "answer_best_layer": ae["best_layer"],
+            "answer_best": ae["best"],
+            "plus_baseline_vs_baseline": s["incremental"]["prompt_end"][fixed]["vs_baseline"],
+        },
+        "baseline": s["baseline"],
+        "soft": {
+            "model": s["soft_label"]["model"],
+            "runs": len(s["soft_label"]["runs"]),
+            "samples_per_task_min": s["soft_label"]["samples_per_task_min"],
+            "auroc": s["soft_label"]["vs_pass"]["auroc"],
+            "auroc_ci": s["soft_label"]["vs_pass"]["auroc_ci"],
+            "probe_spearman": s["ridge_soft"]["prompt_end"]["fixed"],
+            "baseline_spearman": s["ridge_soft"]["baseline"],
+        },
+        "confidence": {
+            "question": conf["question"],
+            "mean": conf["mean"],
+            "mean_passed": conf["mean_passed"],
+            "mean_failed": conf["mean_failed"],
+            "vs_pass": conf["vs_pass"],
+            "vs_probe": conf["vs_probe_fixed"],
+            "bins": bins,
+        },
+        "probe_minus_stated": ivs["probe_minus_stated"],
+        "stated_minus_baseline": ivs["stated_vs_baseline"],
+        "probe_over_baseline_and_stated": ivs["baseline_plus_stated_plus_probe_vs_baseline_plus_stated"],
+        "enjoyment": {
+            "question": enj["question"],
+            "mean": enj["mean"],
+            "sd": float(np.std([t["stated_enjoyment"] for t in tasks])),
+            "vs_pass": enj["vs_pass"],
+            "vs_difficulty": enj["vs_difficulty"],
+            "vs_confidence": enj["vs_confidence"],
+        },
+        "valence": {
+            "layer": val["layer"],
+            "mean": val["mean"],
+            "vs_pass": val["vs_pass"],
+            "vs_enjoyment": val["vs_stated_enjoyment"],
+            "vs_confidence": val["vs_stated_confidence"],
+        },
+        "by_suite": by_suite,
+    }
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--outputs", type=Path, default=Path("outputs"))
@@ -211,10 +309,12 @@ def main() -> None:
             "name": "Qwen3.8 27B",
             "weights": "MLX 8-bit",
             "config_id": "qwen3.8-27b-mlx-8bit",
+            "model_id": "qwen3-8-27b",
             "layers": 64,
         },
         "q1": q1(args.outputs, rng),
         "q2": q2(args.outputs),
+        "q3": q3(args.outputs, rng),
     }
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(r(data), indent=1) + "\n")
