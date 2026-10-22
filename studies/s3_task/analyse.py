@@ -242,7 +242,7 @@ def plot_auroc(res: dict, out: Path) -> Path:
         ("answer_end", "#d23f5c", "after its own answer"),
     ):
         p = res["probe"][site]
-        ax.plot(layers, p["auroc_mean"], color=colour, label=f"probe: {label}")
+        ax.plot(layers, p["auroc"], color=colour, label=f"probe: {label}")
         ax.fill_between(layers, p["auroc_ci"][0], p["auroc_ci"][1], color=colour, alpha=0.15)
         ax.fill_between(
             layers, p["null"]["per_layer_lo"], p["null"]["per_layer_hi"], color=colour, alpha=0.07, hatch="..", lw=0
@@ -344,6 +344,8 @@ def main() -> None:
     res: dict = {
         "model": "Qwen3.8 27B (MLX 8-bit)",
         "run": index["run"],
+        # The benchmark version the run was graded on: its task set is what "the public tasks" means here.
+        "benchmark_version": json.loads((args.runs / index["run"] / "run.json").read_text())["benchmark_version"],
         "n_tasks": n,
         "n_passed": int(y.sum()),
         "layers": layers,
@@ -371,15 +373,19 @@ def main() -> None:
             t0 = time.perf_counter()
             scores = par(delayed(oof_layer)(path, layer, y, folds) for layer in layers)
             mean_scores = np.stack([s.mean(0) for s in scores])  # [layers, tasks]
+            # The AUROC of the score averaged over repeats: what the fixed and best layers report, and what the
+            # interval brackets. The mean of each repeat's AUROC is kept for the permutation null, which is one repeat.
+            auroc = [safe_auc(y, s) for s in mean_scores]
             auroc_mean = [float(np.mean([roc_auc_score(y, s[r]) for r in range(REPEATS)])) for s in scores]
             cis = [boot(lambda i, s=s: safe_auc(y[i], s[i]), n, rng, reps=500) for s in mean_scores]
             within = [within_suite_auc(s, y, suites) for s in mean_scores]
             null = np.stack(par(delayed(null_layer)(path, layer, perms, folds[0]) for layer in layers), axis=1)
             resid = par(delayed(oof_layer)(path, layer, y, folds, suites) for layer in layers)
             resid_mean = np.stack([s.mean(0) for s in resid])
-            best = int(np.argmax(auroc_mean))
+            best = int(np.argmax(auroc))
             oof[site] = mean_scores
             res["probe"][site] = {
+                "auroc": [round(v, 4) for v in auroc],
                 "auroc_mean": [round(v, 4) for v in auroc_mean],
                 "auroc_ci": [[round(c[0], 4) for c in cis], [round(c[1], 4) for c in cis]],
                 "within_suite": [round(v, 4) for v in within],
@@ -414,8 +420,8 @@ def main() -> None:
                 "fixed": corr(ridge[FIXED_LAYER], soft, rng),
             }
             print(
-                f"{site}: best layer {best} AUROC {auroc_mean[best]:.3f}, fixed L{FIXED_LAYER} "
-                f"{auroc_mean[FIXED_LAYER]:.3f}, baseline {res['baseline']['auroc']:.3f} "
+                f"{site}: best layer {best} AUROC {auroc[best]:.3f}, fixed L{FIXED_LAYER} "
+                f"{auroc[FIXED_LAYER]:.3f}, baseline {res['baseline']['auroc']:.3f} "
                 f"({time.perf_counter() - t0:.0f}s)",
                 flush=True,
             )

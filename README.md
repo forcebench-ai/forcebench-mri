@@ -24,26 +24,28 @@ The model knows the language from the first layers (a linear probe reads it at 9
 but until about layer 50 of 64 its next-token guess follows the one it makes with no language named, and
 that default is Java's in 92% of the pairs. Apex is applied late: patching the last position at layer 52
 moves 76% of the decision. Taking the mean Apex-minus-Java direction away at layer 50 makes the model answer
-Apex requests in Java (10 of 12 replies in a Java code block, 98 Java-isms against none unsteered); a random
-direction of the same length changes nothing.
+Apex requests in Java (10 of 12 replies in a Java code block, 98 Java-isms against none unsteered, 53 of them
+double-quoted strings and 19 JUnit `@Test`s); a random direction of the same length changes nothing.
 
-**2. Clicks or code.** 36 Salesforce requirements, each with a textbook answer from Salesforce's guidance:
-12 that a standard declarative feature does (a validation rule, a formula, an approval process...), 12 that a
+**2. Clicks or code.** 36 Salesforce requirements, each with a textbook answer from Salesforce's guidance: 12
+that a standard declarative feature does (a validation rule, a formula, an approval process...), 12 that a
 flow does and 12 that need Apex. Asked in one sentence how it would build each, with nobody named, it reaches
-for code for 1 of the 24 that clicks can do and for 11 of the 12 that need it (3 of them as a flow that calls
-Apex). Offered clicks or code in one word, it gives code a 2% chance where clicks will do and 89% where Apex is
-needed. When a developer asks, it reaches for code for 4 of the 12 flow-type requirements (none when an admin
-asks). A third of its one-sentence answers for click-type requirements suggest Process Builder or Workflow
-Rules, both retired. Through the logit lens the choice is made late: the three kinds of requirement read alike
-until layer 46.
+for custom code (Apex, a Lightning Web Component, or a flow that calls Apex) for 1 of the 24 that clicks can
+do and for 11 of the 12 that need it (3 of them as a flow that calls Apex). Offered clicks or code in one
+word, it gives code a 2% chance where clicks will do and 89% where Apex is needed. When a developer asks, it
+reaches for code for 4 of the 12 flow-type requirements (none when an admin asks). A third of its one-sentence
+answers for click-type requirements suggest Process Builder or Workflow Rules, both retired. Through the logit
+lens the choice is made late: the three kinds of requirement read much alike until layer 46, never more than
+0.53 log-odds apart, with a slight lean in the textbook order around layers 30–37.
 
-**3. The task at hand.** The 272 public Forcebench tasks, shown exactly as in a graded run of the same
-weights (78 passed). A linear probe on the activations at the end of the prompt, before any reasoning,
-tells passes from fails with an AUROC of 0.81 at a layer fixed in advance (95% interval 0.76–0.86), above
-what the suite, difficulty and prompt length give (0.75); shuffled labels reach 0.62. Asked, the model
-rates its chance of passing 7.6 out of 9 on average against a 29% pass rate, and that stated confidence
-does worse than the suite (AUROC 0.64). The comparison favours the probe: it is fitted to the grades (scored on
-held-out tasks) and the model answered with reasoning off, so the fair yardstick for the probe is the suite.
+**3. The task at hand.** The 272 public tasks of Forcebench benchmark 0.1.0, shown exactly as in a graded run
+of the same weights on that version (78 passed, 29%; the leaderboard's suite-averaged score is 28%). A linear
+probe on the activations at the end of the prompt, before any reasoning, tells passes from fails with an AUROC
+of 0.81 at a layer fixed in advance (95% interval 0.76–0.86), above what the suite, difficulty and prompt
+length give (0.75); shuffled labels reach 0.62. Asked, the model rates its chance of passing 7.6 out of 9 on
+average against a 29% pass rate, and that stated confidence does worse than the suite (AUROC 0.64). The
+comparison favours the probe: it is fitted to the grades (scored on held-out tasks) and the model answered
+with reasoning off, so the fair yardstick for the probe is the suite.
 
 ## Running it
 

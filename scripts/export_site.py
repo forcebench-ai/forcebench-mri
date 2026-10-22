@@ -20,6 +20,7 @@ REPO = "https://github.com/leo-dcfa/forcebench-mri"
 BOOT = 2000
 GEN = Path(__file__).parent.parent / "studies" / "s1_latent_java" / "generation.yaml"
 EXAMPLE = "test-discount"
+EFFORTS = ("off", "low", "medium", "high", "xhigh", "max")
 
 
 def head(text: str, lines: int = 9) -> str:
@@ -149,6 +150,30 @@ GROUPS = ("standard", "flow", "apex", "clicks")
 ASKERS = ("none", "admin", "developer")
 
 
+def lens_spread(lens: dict) -> dict:
+    """How far apart the three kinds of requirement read before they part for good.
+
+    ``split`` is the first layer from which the Apex-type interval stays above both others'; ``max`` is the widest
+    gap between the three medians before it, at layer ``at``; ``lean`` is the run of layers around ``at`` where the
+    medians are in the textbook order (Apex above flow above standard), or None.
+    """
+    med = np.array([lens[g]["median"] for g in GROUPS[:3]])
+    apart = np.array(lens["apex"]["lo"]) > np.maximum(lens["standard"]["hi"], lens["flow"]["hi"])
+    split = next(layer for layer in range(len(apart)) if apart[layer:].all())
+    spread = med.max(0) - med.min(0)
+    at = int(np.argmax(spread[:split]))
+    ordered = (med[2] > med[1]) & (med[1] > med[0])
+    lean = None
+    if ordered[at]:
+        lo, hi = at, at
+        while lo > 0 and ordered[lo - 1]:
+            lo -= 1
+        while hi < split - 1 and ordered[hi + 1]:
+            hi += 1
+        lean = [lo, hi]
+    return {"split": split, "max": float(spread[at]), "at": at, "lean": lean}
+
+
 def q2(outputs: Path) -> dict:
     s = json.loads((outputs / "s2" / "s2_results.json").read_text())
     su, items = s["summary"], s["items"]
@@ -179,6 +204,7 @@ def q2(outputs: Path) -> dict:
         # The logit lens on the one-word answer, nobody named: log-odds of "code" over "clicks" after each layer.
         "lens": {g: {k: su["lens"]["none"][g][k] for k in ("median", "lo", "hi")} for g in GROUPS[:3]},
         "lens_code_ahead": {g: su["lens"]["none"][g]["share_code_ahead"] for g in GROUPS[:3]},
+        "lens_spread": lens_spread(su["lens"]["none"]),
         # What it named when asked for one feature, nobody named: the model's replies to the study's own prompts.
         "features": {g: su["features"][g] for g in GROUPS[:3]},
         "agreement": su["agreement"],
@@ -223,12 +249,14 @@ def q3(outputs: Path, rng: np.random.Generator) -> dict:
     ivs = s["inside_vs_says"]
     return {
         "run_id": s["run"],
+        "benchmark_version": s["benchmark_version"],
         "n_tasks": s["n_tasks"],
         "n_passed": s["n_passed"],
         "fixed_layer": s["fixed_layer"],
         "auroc_by_layer": {
-            "prompt_end": {"mean": pe["auroc_mean"], "lo": pe["auroc_ci"][0], "hi": pe["auroc_ci"][1]},
-            "answer_end": {"mean": ae["auroc_mean"], "lo": ae["auroc_ci"][0], "hi": ae["auroc_ci"][1]},
+            # The AUROC of the score averaged over repeats, the same measure as the fixed and best layers.
+            "prompt_end": {"auroc": pe["auroc"], "lo": pe["auroc_ci"][0], "hi": pe["auroc_ci"][1]},
+            "answer_end": {"auroc": ae["auroc"], "lo": ae["auroc_ci"][0], "hi": ae["auroc_ci"][1]},
         },
         "null_best_layer_p95": pe["null"]["max_p95"],
         "null_p_best": pe["null"]["p_best"],
@@ -246,6 +274,7 @@ def q3(outputs: Path, rng: np.random.Generator) -> dict:
         "soft": {
             "model": s["soft_label"]["model"],
             "runs": len(s["soft_label"]["runs"]),
+            "efforts": sorted({run.rsplit("@", 1)[1] for run in s["soft_label"]["runs"]}, key=EFFORTS.index),
             "samples_per_task_min": s["soft_label"]["samples_per_task_min"],
             "auroc": s["soft_label"]["vs_pass"]["auroc"],
             "auroc_ci": s["soft_label"]["vs_pass"]["auroc_ci"],
