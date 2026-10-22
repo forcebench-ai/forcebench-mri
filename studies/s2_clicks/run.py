@@ -10,8 +10,8 @@ admin, a developer):
   distribution and the two orders are averaged, so a lean towards whichever is named first cancels out.
 
 A reply counts as clicks, code, both (a flow that calls Apex, say) or neither by the features it names; it reaches
-for code when it names any. For the one-word choice, the logit lens reads the log-odds of "code" over "clicks"
-after every layer.
+for code when it names custom code: Apex, a Lightning Web Component, or a flow that calls Apex. For the one-word
+choice, the logit lens reads the log-odds of "code" over "clicks" after every layer.
 
     uv run python studies/s2_clicks/run.py --out outputs/s2
 """
