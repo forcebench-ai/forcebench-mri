@@ -62,7 +62,7 @@ uv run python scripts/export_site.py --out results/inside-the-model.json   # the
 ```
 
 Study 3 reads Forcebench's public tasks and one graded run from a checkout of
-[leo-dcfa/forcebench](https://github.com/leo-dcfa/forcebench); its scripts say how.
+[forcebench-ai/forcebench](https://github.com/forcebench-ai/forcebench); its scripts say how.
 
 `src/forcebench_mri/model.py` is the instrument: it wraps every decoder layer so a run can read, add to or
 overwrite the residual stream after any layer, decodes residuals with the logit lens, and generates

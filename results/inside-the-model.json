@@ -1,7 +1,7 @@
 {
  "study": "inside-the-model",
  "generated_at": "2026-10-22T00:46:17Z",
- "repo": "https://github.com/leo-dcfa/forcebench-mri",
+ "repo": "https://github.com/forcebench-ai/forcebench-mri",
  "model": {
   "name": "Qwen3.8 27B",
   "weights": "MLX 8-bit",
