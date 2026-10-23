@@ -16,7 +16,7 @@ from pathlib import Path
 import numpy as np
 import yaml
 
-REPO = "https://github.com/leo-dcfa/forcebench-mri"
+REPO = "https://github.com/forcebench-ai/forcebench-mri"
 BOOT = 2000
 GEN = Path(__file__).parent.parent / "studies" / "s1_latent_java" / "generation.yaml"
 EXAMPLE = "test-discount"
